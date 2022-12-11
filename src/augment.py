@@ -1,50 +1,75 @@
+import random
 import numpy as np
 import torchvision.transforms as T
+import torch
+import cv2 as cv
+from kornia.morphology import erosion, dilation
 
 
-class Augment:
+class GaussianNoise(object):
+    def __init__(self, mean=0., std=1.):
+        self.std = std
+        self.mean = mean
     
-    def __init__(self, image):
-        self.im = image
+    def __call__(self, tensor):
+        out = tensor + torch.randn(tensor.size()) * self.std + self.mean
+        return out
     
-    def apply(self, num_comp=1):
-        
-        augmentations = [
-            self.crop, self.rotate, self.cut_out, self.color, self.sobel, self.noise, self.blur
-        ]
-        applied = []
-        aug_im = None
-        
-        for comp in range(num_comp):
-            rand_fun = np.random.choice(augmentations)
-            aug_im = rand_fun()
-            applied.append(rand_fun)
+    def __repr__(self):
+        return self.__class__.__name__ + '(mean={0}, std={1})'.format(self.mean, self.std)
 
-        return aug_im
-    
-    def crop(self):
-        # TODO: Random crop based on image size
-        crop_image = T.RandomCrop(size=np.random.choice([100, 200, 300]))(self.im)
-        return crop_image
 
-    def rotate(self):
-        return T.RandomRotation(degrees=np.random.choice(range(360)))(self.im)
+class Erosion(object):
     
-    def cut_out(self):
-        return T.RandomErasing()(self.im)
+    def __init__(self, kernel_size=3):
+        self.kernel_size = kernel_size
     
-    def color(self):
-        pass
+    def __call__(self, tensor):
+        erosion_kernel = torch.ones(self.kernel_size, self.kernel_size)
+        batch_tensor = tensor[None, :, :, :]
+        batch_tensor = erosion(batch_tensor, erosion_kernel)
+        return batch_tensor[0, :, :, :]
     
-    def sobel(self):
-        pass
+
+class Dilation(object):
     
-    def noise(self):
-        pass
+    def __init__(self, kernel_size=3):
+        self.kernel_size = kernel_size
     
-    def blur(self):
-        sigma = np.random.choice([3, 5, 7])
-        return T.GaussianBlur(kernel_size=(11, 11), sigma=sigma)(self.im)
+    def __call__(self, tensor):
+        erosion_kernel = torch.ones(self.kernel_size, self.kernel_size)
+        structuring_kernel = torch.zeros(self.kernel_size, self.kernel_size)
+        batch_tensor = tensor[None, :, :, :]
+        batch_tensor = dilation(batch_tensor, erosion_kernel, structuring_element=structuring_kernel)
+        return batch_tensor[0, :, :, :]
+
+
+class PositivePairTransform:
+    
+    def __init__(self, transforms=None):
+        self.transforms = (
+            transforms if transforms is not None else
+            [
+                # T.RandomCrop(254),
+                GaussianNoise(0, random.uniform(0.1, 0.3)),
+                T.GaussianBlur(kernel_size=(5, 5)),
+                T.RandomRotation(degrees=np.random.randint(0, 45)),
+                T.RandomErasing(p=1),
+                Dilation(5),
+            ]
+        )
+    
+    def __call__(self, tensor):
+        self.left, self.right = random.sample(self.transforms, 2)
+        tensor = self.left(tensor)
+        tensor = self.right(tensor)
+        return tensor
+    
+    def __repr__(self):
+        return f"{type(self.left).__name__} + {type(self.right).__name__}"
+    
+    def __str__(self):
+        return f"{type(self.left).__name__} + {type(self.right).__name__}"
 
 
 if __name__ == '__main__':
@@ -55,9 +80,8 @@ if __name__ == '__main__':
                  "Project/Data/ICDAR2017_CLaMM_task1_task3/315556101_MS0364_0077.tif"
     im = Image.open(image_path)
     image_tensor = T.ToTensor()(im)
-    augment = Augment(image_tensor)
-    im = augment.cut_out()
-
-    plt.imshow(np.squeeze(im.permute(1, 2, 0), axis=2), cmap='gray')
+    pp = PositivePairTransform()
+    im = pp(image_tensor)
+    im = T.RandomResizedCrop((256, 256))(im)
+    plt.imshow(im[0, :].numpy(), cmap='gray')
     plt.show()
-    

@@ -1,7 +1,9 @@
-from dataset import load_icdar_task1_task3, ICDARDataset
+from augment import PositivePairTransform
+from dataset import ICDARDataset
 import os
-
+import torchvision.transforms as T
 from image_utils import show_image_list
+from tqdm import tqdm
 
 
 def test_run():
@@ -17,18 +19,25 @@ def test_run():
         data_dir,
         '@ICDAR2017_CLaMM_task1_task3.csv'
     )
+
+    num_images_show = 10
     
     icdar_dataset = ICDARDataset(
         csv_filepath=label_file_path,
         root_dir=data_dir,
-        transform=None
+        transform=PositivePairTransform()
     )
 
-    for i in range(len(icdar_dataset)):
+    images = []
+    labels = []
+    
+    for i in tqdm(range(num_images_show)):
         sample = icdar_dataset[i]
-        show_image_list([sample.get('image')])
+        std_img = T.RandomResizedCrop((512, 512))(sample['image'])
+        images.append(std_img[0, :].numpy())
+        labels.append(sample['positive_pair'])
 
-    # load_icdar_task1_task3(data_dir, label_file_path, 10, show_samples_num=5)
+    show_image_list(images, grid=False, num_cols=3, list_titles=labels)
 
 
 if __name__ == '__main__':

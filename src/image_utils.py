@@ -12,7 +12,7 @@ def img_is_color(img):
     return False
 
 
-def show_image_list(list_images, list_titles=None, list_cmaps=None, grid=True, num_cols=2, figsize=(20, 10),
+def show_image_list(list_images, list_titles=None, list_cmaps=None, grid=True, num_cols=2, figsize=(40, 40),
                     title_fontsize=30):
     """
     Shows a grid of images, where each image is a Numpy array. The images can be either
