@@ -1,24 +1,21 @@
 import torch
-from torch import nn
 from torch.nn import functional as F
 from torch.utils.data import DataLoader
 from torch.utils.data import random_split
-from torchvision.datasets import MNIST
 from torchvision import transforms
 import pytorch_lightning as pl
 
+from dataset import ICDARDataset
+from simclr.encoder import ResNet50Encoder
+from simclr.head import ProjectionHead
 
-class LitAutoEncoder(pl.LightningModule):
-    def __init__(self):
+
+class SimCLR(pl.LightningModule):
+    def __init__(self, batch_size, num_samples, max_epoch):
         super().__init__()
-        self.encoder = nn.Sequential(
-            nn.Linear(28 * 28, 64),
-            nn.ReLU(),
-            nn.Linear(64, 3))
-        self.decoder = nn.Sequential(
-            nn.Linear(3, 64),
-            nn.ReLU(),
-            nn.Linear(64, 28 * 28))
+        self.save_hyperparameters()
+        self.encoder = ResNet50Encoder()
+        self.projection = ProjectionHead(1000)
     
     def forward(self, x):
         embedding = self.encoder(x)
@@ -32,7 +29,7 @@ class LitAutoEncoder(pl.LightningModule):
         x, y = train_batch
         x = x.view(x.size(0), -1)
         z = self.encoder(x)
-        x_hat = self.decoder(z)
+        x_hat = self.projection(z)
         loss = F.mse_loss(x_hat, x)
         self.log('train_loss', loss)
         return loss
@@ -41,22 +38,7 @@ class LitAutoEncoder(pl.LightningModule):
         x, y = val_batch
         x = x.view(x.size(0), -1)
         z = self.encoder(x)
-        x_hat = self.decoder(z)
+        x_hat = self.projection(z)
         loss = F.mse_loss(x_hat, x)
         self.log('val_loss', loss)
-
-
-# data
-dataset = MNIST('', train=True, download=True, transform=transforms.ToTensor())
-mnist_train, mnist_val = random_split(dataset, [55000, 5000])
-
-train_loader = DataLoader(mnist_train, batch_size=32)
-val_loader = DataLoader(mnist_val, batch_size=32)
-
-# model
-model = LitAutoEncoder()
-
-# training
-trainer = pl.Trainer(gpus=4, num_nodes=8, precision=16, limit_train_batches=0.5)
-trainer.fit(model, train_loader, val_loader)
 

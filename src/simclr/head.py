@@ -9,7 +9,7 @@ class ProjectionHead(torch.nn.Module):
         self.relu = torch.nn.ReLU()
         self.l2 = torch.nn.Linear(ndim, ndim)
         self.layers = torch.nn.Sequential(
-            self.l1, self.relu, self.l
+            self.l1, self.relu, self.l2
         )
     
     def forward(self, x):

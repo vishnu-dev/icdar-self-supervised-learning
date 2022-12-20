@@ -58,9 +58,9 @@ class PositivePairTransform:
                 Dilation(5),
             ]
         )
-    
-    def __call__(self, tensor):
         self.left, self.right = random.sample(self.transforms, 2)
+
+    def __call__(self, tensor):
         tensor = self.left(tensor)
         tensor = self.right(tensor)
         return tensor
