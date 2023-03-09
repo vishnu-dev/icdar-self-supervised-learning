@@ -50,7 +50,6 @@ class PositivePairTransform:
         self.transforms = (
             transforms if transforms is not None else
             [
-                # T.RandomCrop(254),
                 GaussianNoise(0, random.uniform(0.1, 0.3)),
                 T.GaussianBlur(kernel_size=(5, 5)),
                 T.RandomRotation(degrees=np.random.randint(0, 45)),
@@ -58,12 +57,19 @@ class PositivePairTransform:
                 Dilation(5),
             ]
         )
-        self.left, self.right = random.sample(self.transforms, 2)
+        self.left = T.Compose([
+            T.RandomResizedCrop((254, 254)),
+            *random.sample(self.transforms, 2)
+        ])
+        self.right = T.Compose([
+            T.RandomResizedCrop((254, 254)),
+            *random.sample(self.transforms, 2)
+        ])
 
     def __call__(self, tensor):
-        tensor = self.left(tensor)
-        tensor = self.right(tensor)
-        return tensor
+        left = self.left(tensor)
+        right = self.right(tensor)
+        return left, right, None
     
     def __repr__(self):
         return f"{type(self.left).__name__} + {type(self.right).__name__}"
