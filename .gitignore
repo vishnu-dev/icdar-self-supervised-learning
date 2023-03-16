@@ -161,3 +161,6 @@ cython_debug/
 
 # Dataset folder
 Data/
+
+# Test output image
+test.png

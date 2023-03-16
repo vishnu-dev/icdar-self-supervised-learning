@@ -16,7 +16,6 @@ def plot_features(model, data_loader, num_feats, batch_size, num_samples):
     processed_samples = 0
     with torch.no_grad():
         for (x1, x2, _), label in data_loader:
-            print(x1, x2, _)
             if processed_samples >= num_samples:
                 break
             x1 = x1.squeeze().cuda()
@@ -28,7 +27,6 @@ def plot_features(model, data_loader, num_feats, batch_size, num_samples):
 
     tsne = TSNE(n_components=3, perplexity=50, init='pca')
     x_feats = tsne.fit_transform(feats)
-    print(x_feats.shape, labels.shape)
 
     dim_red_df = pd.DataFrame(x_feats)
     dim_red_df['labels'] = pd.Categorical(labels)

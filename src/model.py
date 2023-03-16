@@ -5,11 +5,6 @@ import pytorch_lightning as pl
 import os
 
 
-def custom_collate(batch):
-    batch = list(filter(lambda x: x is not None, batch))
-    return torch.utils.data.dataloader.default_collate(batch)
-
-
 def train_simclr(proj_dir, train_data, val_data, batch_size, max_epochs=500, num_workers=os.cpu_count(), **kwargs):
 
     trainer = pl.Trainer(

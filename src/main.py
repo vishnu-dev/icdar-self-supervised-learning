@@ -6,10 +6,9 @@ from augment import PositivePairTransform
 from pl_bolts.models.self_supervised.simclr.transforms import SimCLRTrainDataTransform, SimCLREvalDataTransform
 from dataset import ICDARDataset
 from evaluate import plot_features
-from model import train_simclr, custom_collate
+from model import train_simclr
 import os
 
-warnings.filterwarnings("ignore", category=UnderReviewWarning)
 
 def train_test(root_dir, is_eval=False):
 
@@ -56,27 +55,7 @@ def test_run():
         os.path.expanduser('~'),
         'icdar'
     )
-
-    train_test(proj_dir, is_eval=True)
-
-    # num_images_show = 10
-    #
-    # icdar_dataset = ICDARDataset(
-    #     csv_filepath=label_file_path,
-    #     root_dir=data_dir,
-    #     transform=PositivePairTransform()
-    # )
-    #
-    # images = []
-    # labels = []
-    #
-    # for i in tqdm(range(num_images_show)):
-    #     sample = icdar_dataset[i]
-    #     std_img = T.RandomResizedCrop((512, 512))(sample['image'])
-    #     images.append(std_img[0, :].numpy())
-    #     labels.append(sample['positive_pair'])
-    #
-    # show_image_list(images, grid=False, num_cols=3, list_titles=labels)
+    train_test(proj_dir, is_eval=False)
 
 
 if __name__ == '__main__':
