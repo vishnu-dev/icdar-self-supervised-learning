@@ -3,7 +3,7 @@ import numpy as np
 
 
 def img_is_color(img):
-    if len(img.shape) == 3:
+    if len(img.shape) == 3 and img.shape[0] == 3:
         # Check the color channels to see if they're all the same.
         c1, c2, c3 = img[:, :, 0], img[:, :, 1], img[:, :, 2]
         if (c1 == c2).all() and (c2 == c3).all():

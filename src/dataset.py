@@ -8,10 +8,11 @@ import torchvision.transforms as T
 
 class ICDARDataset(Dataset):
 
-    def __init__(self, csv_filepath, root_dir, transforms=None):
+    def __init__(self, csv_filepath, root_dir, transforms=None, convert_rgb=True):
         self.root_dir = root_dir
         self.transforms = transforms
         self.data = pd.read_csv(csv_filepath, sep=';')
+        self.convert_rgb = convert_rgb
 
     def __len__(self):
         return len(self.data)
@@ -27,8 +28,9 @@ class ICDARDataset(Dataset):
             image = Image.open(img_path)
         except Exception as ex:
             return None
-        
-        image = image.convert('RGB')
+
+        if self.convert_rgb:
+            image = image.convert('RGB')
         
         if self.transforms is not None:
             image = self.transforms(image)
