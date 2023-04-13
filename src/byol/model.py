@@ -1,9 +1,9 @@
 import os
 import pytorch_lightning as pl
 from pl_bolts.models.self_supervised import BYOL
-from pl_bolts.models.self_supervised.simclr.transforms import SimCLRTrainDataTransform, SimCLREvalDataTransform
+from pl_bolts.models.self_supervised.simclr import SimCLRTrainDataTransform, SimCLREvalDataTransform
 from torch.utils.data import DataLoader
-from dataset import ICDARDataset
+from data.dataset import ICDARDataset
 
 
 def train_byol(proj_dir, train_data, val_data, batch_size, max_epochs=500, num_workers=os.cpu_count(), **kwargs):
@@ -69,8 +69,8 @@ def train_test(root_dir, is_eval=False):
             root_dir,
             train_dataset,
             val_dataset,
-            batch_size=32,
-            max_epochs=1,
+            batch_size=64,
+            max_epochs=100,
             gpus=-1,
             num_samples=len(train_dataset),
             dataset='icdar'

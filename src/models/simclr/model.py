@@ -1,13 +1,9 @@
 import torch
 from torch.nn import functional as F
-from torch.utils.data import DataLoader
-from torch.utils.data import random_split
-from torchvision import transforms
 import pytorch_lightning as pl
 
-from dataset import ICDARDataset
-from simclr.encoder import ResNet50Encoder
-from simclr.head import ProjectionHead
+from models.simclr.encoder import ResNet50Encoder
+from models.simclr.head import ProjectionHead
 
 
 class SimCLR(pl.LightningModule):

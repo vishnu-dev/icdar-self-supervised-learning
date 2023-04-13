@@ -52,8 +52,8 @@ class ContrastiveLoss(torch.nn.Module):
 def test():
     
     import os
-    from src.dataset import ICDARDataset
-    from src.augment import PositivePairTransform
+    from data.dataset import ICDARDataset
+    from augment import PositivePairTransform
     import torchvision.transforms as T
     
     proj_dir = 'shared/FAU Study/Project/PR Project'

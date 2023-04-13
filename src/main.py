@@ -1,10 +1,7 @@
-import warnings
-from pl_bolts.utils.stability import UnderReviewWarning
 from pl_bolts.models.self_supervised import SimCLR
-from torch.utils.data import random_split, DataLoader
-from augment import PositivePairTransform
+from torch.utils.data import DataLoader
 from pl_bolts.models.self_supervised.simclr.transforms import SimCLRTrainDataTransform, SimCLREvalDataTransform
-from dataset import ICDARDataset
+from data.dataset import ICDARDataset
 from evaluate import plot_features
 from model import train_simclr
 import os

@@ -1,14 +1,11 @@
-from src.image_utils import show_image_list
-from src.mae.vit import ViTBlocks
+from image_utils import show_image_list
 from torchvision.models import vit_b_32
 from torchvision.transforms import transforms
 from torch.utils.data import DataLoader
-from src.dataset import ICDARDataset
-from typing import Tuple, Union
+from data.dataset import ICDARDataset
 import pytorch_lightning as pl
 import torch
 import os
-from lightly.data.collate import MAECollateFunction
 from lightly.models import utils
 from lightly.models.modules import masked_autoencoder
 
