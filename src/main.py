@@ -52,7 +52,7 @@ def test_run():
         os.path.expanduser('~'),
         'icdar'
     )
-    train_test(proj_dir, is_eval=False)
+    train_test(proj_dir, is_eval=True)
 
 
 if __name__ == '__main__':

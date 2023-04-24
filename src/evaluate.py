@@ -21,6 +21,7 @@ def plot_features(model, data_loader, num_feats, batch_size, num_samples):
             x1 = x1.squeeze().cuda()
             out = model(x1)
             out = out.cpu().data.numpy()
+            print(out.shape)
             feats = np.append(feats, out, axis=0)
             labels = np.append(labels, label, axis=0)
             processed_samples += batch_size

@@ -1,6 +1,7 @@
-from pl_bolts.models.self_supervised import SimCLR, BYOL
+from pl_bolts.models.self_supervised import SimCLR
 
 from models.mae.model import MAE
+from models.byol.model import BYOL
 
 
 def model_factory(model_name, **model_kwargs):

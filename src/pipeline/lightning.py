@@ -41,5 +41,6 @@ class LightningPipeline:
             trainer.fit(model, self.data_loader.get(self.mode), self.data_loader.get('val'))
         elif self.mode == 'test':
             trainer.test(model, self.data_loader.get(self.mode))
+            
         else:
             raise ValueError(f'Invalid mode {self.mode}')

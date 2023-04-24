@@ -1,6 +1,7 @@
 import click
 from data.data_factory import data_factory
 from data.transforms import transform_factory
+from data.collate import collate_factory
 from models.model_factory import model_factory
 from pipeline.lightning import LightningPipeline
 
@@ -9,7 +10,7 @@ python run_model.py
 --root-dir=/home/uj43ugat/icdar/data/ICDAR2017_CLaMM_Training
 --label-path=/home/uj43ugat/icdar/data/ICDAR2017_CLaMM_Training/@ICDAR2017_CLaMM_Training.csv
 --max-epochs=10
---model=byol
+--model-name=byol
 """
 @click.command()
 @click.option('--root-dir', help='Dataset root directory', required=True)
@@ -23,7 +24,9 @@ def execute(root_dir, label_path, dataset, model_name, mode, max_epochs, batch_s
 
     transforms = transform_factory(model_name, mode)
     
-    data_loader = data_factory(dataset, root_dir, label_path, transforms, mode, batch_size)
+    collate_fn = collate_factory(model_name)
+    
+    data_loader = data_factory(dataset, root_dir, label_path, transforms, mode, batch_size, collate_fn)
     
     model_class = model_factory(
         model_name,

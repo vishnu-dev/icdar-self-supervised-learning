@@ -5,7 +5,7 @@ from data.dataset import ICDARDataset
 from data.transforms import transform_factory
 
 
-def data_factory(dataset_name, root_dir, label_filepath, transforms, mode, batch_size):
+def data_factory(dataset_name, root_dir, label_filepath, transforms, mode, batch_size, collate_fn=None):
 
     if dataset_name.lower() == 'icdar':
         dataset = ICDARDataset(label_filepath, root_dir, transforms=transforms(), convert_rgb=True)
@@ -30,7 +30,8 @@ def data_factory(dataset_name, root_dir, label_filepath, transforms, mode, batch
                 shuffle=True,
                 drop_last=True,
                 pin_memory=True,
-                num_workers=os.cpu_count()
+                num_workers=os.cpu_count(),
+                collate_fn=collate_fn() if collate_fn else None
             ),
             'val': DataLoader(
                 val_dataset,
@@ -38,7 +39,8 @@ def data_factory(dataset_name, root_dir, label_filepath, transforms, mode, batch
                 shuffle=False,
                 drop_last=False,
                 pin_memory=True,
-                num_workers=os.cpu_count()
+                num_workers=os.cpu_count(),
+                collate_fn=collate_fn() if collate_fn else None
             )
         }
     elif mode == 'test':
@@ -49,7 +51,8 @@ def data_factory(dataset_name, root_dir, label_filepath, transforms, mode, batch
                 shuffle=False,
                 drop_last=False,
                 pin_memory=True,
-                num_workers=os.cpu_count()
+                num_workers=os.cpu_count(),
+                collate_fn=collate_fn() if collate_fn else None
             )
         }
     else:
