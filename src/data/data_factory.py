@@ -3,12 +3,16 @@ import os
 from torch.utils.data import DataLoader, random_split
 from data.dataset import ICDARDataset
 from data.transforms import transform_factory
+from lightly.data import LightlyDataset
+from glob import glob
 
 
-def data_factory(dataset_name, root_dir, label_filepath, transforms, mode, batch_size, collate_fn=None):
+def data_factory(dataset_name, root_dir, label_filepath, transforms, mode, batch_size, collate_fn=None, num_cpus=None):
 
     if dataset_name.lower() == 'icdar':
-        dataset = ICDARDataset(label_filepath, root_dir, transforms=transforms(), convert_rgb=True)
+        dataset = ICDARDataset(label_filepath, root_dir, transforms=transforms, convert_rgb=True)
+    elif dataset_name.lower() == 'icdar_lightly':
+        dataset = LightlyDataset(input_dir=root_dir, transform=transforms, filenames=glob(root_dir + '/*.tif'))
     else:
         raise NotImplementedError(f'Dataset {dataset_name} is not implemented')
 
@@ -30,8 +34,9 @@ def data_factory(dataset_name, root_dir, label_filepath, transforms, mode, batch
                 shuffle=True,
                 drop_last=True,
                 pin_memory=True,
-                num_workers=os.cpu_count(),
-                collate_fn=collate_fn() if collate_fn else None
+                persistent_workers=True,
+                num_workers=num_cpus or os.cpu_count(),
+                collate_fn=collate_fn if collate_fn else None
             ),
             'val': DataLoader(
                 val_dataset,
@@ -39,8 +44,9 @@ def data_factory(dataset_name, root_dir, label_filepath, transforms, mode, batch
                 shuffle=False,
                 drop_last=False,
                 pin_memory=True,
-                num_workers=os.cpu_count(),
-                collate_fn=collate_fn() if collate_fn else None
+                persistent_workers=True,
+                num_workers=num_cpus or os.cpu_count(),
+                collate_fn=collate_fn if collate_fn else None
             )
         }
     elif mode == 'test':
@@ -51,8 +57,9 @@ def data_factory(dataset_name, root_dir, label_filepath, transforms, mode, batch
                 shuffle=False,
                 drop_last=False,
                 pin_memory=True,
+                persistent_workers=True,
                 num_workers=os.cpu_count(),
-                collate_fn=collate_fn() if collate_fn else None
+                collate_fn=collate_fn if collate_fn else None
             )
         }
     else:

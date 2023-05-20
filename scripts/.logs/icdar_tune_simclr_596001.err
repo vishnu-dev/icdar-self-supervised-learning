@@ -1,0 +1,53 @@
+ERROR: Unable to locate a modulefile for 'woodymodules'
+ERROR: Unable to locate a modulefile for 'woodymodules'
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/torchvision/io/image.py:13: UserWarning: Failed to load image Python extension: '/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/torchvision/image.so: undefined symbol: _ZN3c104cuda20CUDACachingAllocator9allocatorE'If you don't plan on using image functionality from `torchvision.io`, you can ignore this warning. Otherwise, there might be something wrong with your environment. Did you have `libjpeg` or `libpng` installed before building `torchvision` from source?
+  warn(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/amdim/amdim_module.py:35: UnderReviewWarning: The feature generate_power_seq is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  "lr_options": generate_power_seq(LEARNING_RATE_CIFAR, 11),
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/amdim/amdim_module.py:93: UnderReviewWarning: The feature FeatureMapContrastiveTask is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  contrastive_task: Union[FeatureMapContrastiveTask] = FeatureMapContrastiveTask("01, 02, 11"),
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/losses/self_supervised_learning.py:234: UnderReviewWarning: The feature AmdimNCELoss is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.nce_loss = AmdimNCELoss(tclip)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/datamodules/experience_source.py:18: UnderReviewWarning: The feature warn_missing_pkg is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  warn_missing_pkg("gym")
+[32m[I 2023-05-21 00:06:39,033][0m A new study created in memory with name: no-name-1f898a73-0f70-44da-bcfd-e35e1e591fcd[0m
+/home/hpc/iwfa/iwfa028h/dev/pr/icdar-self-supervised-learning/src/models/model_factory.py:11: UnderReviewWarning: The feature SimCLR is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return SimCLR(**model_kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:138: UnderReviewWarning: The feature resnet50 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return backbone(first_conv=self.first_conv, maxpool1=self.maxpool1, return_all_feature_maps=False)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:321: UnderReviewWarning: The feature _resnet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return _resnet("resnet50", Bottleneck, [3, 4, 6, 3], pretrained, progress, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:281: UnderReviewWarning: The feature ResNet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  model = ResNet(block, layers, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:223: UnderReviewWarning: The feature conv1x1 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  conv1x1(self.inplanes, planes * block.expansion, stride),
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:229: UnderReviewWarning: The feature Bottleneck is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  block(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:110: UnderReviewWarning: The feature conv3x3 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.conv2 = conv3x3(width, width, stride, groups, dilation)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:126: UnderReviewWarning: The feature Projection is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.projection = Projection(input_dim=self.hidden_mlp, hidden_dim=self.hidden_mlp, output_dim=self.feat_dim)
+[rank: 0] Global seed set to 42
+Using 16bit native Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:219: UnderReviewWarning: The feature linear_warmup_decay is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  linear_warmup_decay(warmup_steps, total_steps, cosine=True),
+
+  | Name       | Type       | Params
+------------------------------------------
+0 | encoder    | ResNet     | 25.6 M
+1 | projection | Projection | 4.5 M 
+------------------------------------------
+30.0 M    Trainable params
+0         Non-trainable params
+30.0 M    Total params
+60.039    Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py:1555: PossibleUserWarning: The number of training batches (19) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+  rank_zero_warn(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "

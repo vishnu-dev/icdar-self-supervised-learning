@@ -164,3 +164,6 @@ Data/
 
 # Test output image
 test.png
+
+# SLURM logs
+*.out

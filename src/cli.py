@@ -4,14 +4,13 @@ from data.transforms import transform_factory
 from data.collate import collate_factory
 from models.model_factory import model_factory
 from pipeline.lightning import LightningPipeline
+from models.mae.mask_generator import MaskingGenerator
 
 """
-python run_model.py 
---root-dir=/home/uj43ugat/icdar/data/ICDAR2017_CLaMM_Training
---label-path=/home/uj43ugat/icdar/data/ICDAR2017_CLaMM_Training/@ICDAR2017_CLaMM_Training.csv
---max-epochs=10
---model-name=byol
+python cli.py --root-dir=/home/woody/iwfa/iwfa028h/dev/faps/data/ICDAR2017_CLaMM_Training --label-path=/home/woody/iwfa/iwfa028h/dev/faps/data/ICDAR2017_CLaMM_Training/@ICDAR2017_CLaMM_Training.csv --max-epochs=100 --batch-size=32 --model-name=mae
 """
+
+
 @click.command()
 @click.option('--root-dir', help='Dataset root directory', required=True)
 @click.option('--label-path', help='Label CSV filepath', required=True)
@@ -20,13 +19,15 @@ python run_model.py
 @click.option('--mode', default='train', help='Execution mode (train, test)')
 @click.option('--max-epochs', default=100, type=int, help='Maximum number of epochs')
 @click.option('--batch-size', default=32, type=int, help='Batch size')
-def execute(root_dir, label_path, dataset, model_name, mode, max_epochs, batch_size):
+@click.option('--num-cpus', default=8, type=int, help='Number of CPUs for data loading')
+@click.option('--learning-rate', default=0.001, type=float, help='Learning rate')
+def execute(root_dir, label_path, dataset, model_name, mode, max_epochs, batch_size, num_cpus, learning_rate):
 
     transforms = transform_factory(model_name, mode)
     
     collate_fn = collate_factory(model_name)
     
-    data_loader = data_factory(dataset, root_dir, label_path, transforms, mode, batch_size, collate_fn)
+    data_loader = data_factory(dataset, root_dir, label_path, transforms, mode, batch_size, collate_fn, num_cpus)
     
     model_class = model_factory(
         model_name,
@@ -34,12 +35,9 @@ def execute(root_dir, label_path, dataset, model_name, mode, max_epochs, batch_s
         num_samples=len(data_loader.get(mode).dataset),
         max_epochs=max_epochs,
         batch_size=batch_size,
-        dataset=dataset
+        dataset=dataset,
+        learning_rate=learning_rate
     )
-    
-    print(model_class)
-    print(transforms)
-    print(data_loader)
 
     pipeline = LightningPipeline(
         root_dir,

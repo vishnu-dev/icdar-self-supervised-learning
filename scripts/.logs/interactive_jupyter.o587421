@@ -1,0 +1,71 @@
+### Starting TaskPrologue of job 587421 on tg081 at Tue May  2 14:24:11 CEST 2023
+Running on cores 16-19,48-51 with governor ondemand
+Tue May  2 14:24:11 2023       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 530.41.03              Driver Version: 530.41.03    CUDA Version: 12.1     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                  Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf            Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA GeForce RTX 3080         On | 00000000:3E:00.0 Off |                  N/A |
+| 30%   31C    P8               18W / 300W|      1MiB / 10240MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|  No running processes found                                                           |
++---------------------------------------------------------------------------------------+
+### Finished TaskPrologue
+
+ERROR: Unable to locate a modulefile for 'woodymodules'
+[I 14:24:16.500 NotebookApp] [jupyter_nbextensions_configurator] enabled 0.6.1
+[I 14:24:16.502 NotebookApp] Serving notebooks from local directory: /home/hpc/iwfa/iwfa028h
+[I 14:24:16.502 NotebookApp] Jupyter Notebook 6.5.4 is running at:
+[I 14:24:16.502 NotebookApp] http://tg081:9998/
+[I 14:24:16.502 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd-tg081: error: *** JOB 587421 ON tg081 CANCELLED AT 2023-05-02T14:25:50 ***
+slurmstepd-tg081: error: *** STEP 587421.0 ON tg081 CANCELLED AT 2023-05-02T14:25:50 ***
+[C 14:25:50.379 NotebookApp] received signal 15, stopping
+[I 14:25:50.386 NotebookApp] Shutting down 0 kernels
+[I 14:25:50.387 NotebookApp] Shutting down 0 terminals
+
+  _   _          _      _
+ | | | |_ __  __| |__ _| |_ ___
+ | |_| | '_ \/ _` / _` |  _/ -_)
+  \___/| .__/\__,_\__,_|\__\___|
+       |_|
+                       
+Read the migration plan to Notebook 7 to learn about the new features and the actions to take if you are using extensions.
+
+https://jupyter-notebook.readthedocs.io/en/latest/migrate_to_notebook7.html
+
+Please note that updating to Notebook 7 might break some of your extensions.
+
+=== JOB_STATISTICS ===
+=== current date     : Tue 02 May 2023 02:25:53 PM CEST
+= Job-ID             : 587421 on tinygpu
+= Job-Name           : interactive_jupyter
+= Job-Command        : /home/hpc/iwfa/iwfa028h/dev/pr/icdar-semi-supervised-learning/scripts/interactive_jupyter.sh
+= Initial workdir    : /home/hpc/iwfa/iwfa028h/dev/pr/icdar-semi-supervised-learning/scripts
+= Queue/Partition    : rtx3080
+= Slurm account      : iwfa with QOS=normal
+= Requested resources: cpu=8,mem=47200M,node=1,billing=8,gres/gpu=1,gres/gpu:rtx3080=1 for 06:00:00
+= Elapsed runtime    : 00:01:46
+= Total RAM usage    : 0.1 GiB of requested 46 GiB (0.2%)   
+= Node list          : tg081
+= Subm/Elig/Start/End: 2023-05-02T14:24:03 / 2023-05-02T14:24:03 / 2023-05-02T14:24:04 / 2023-05-02T14:25:50
+======================
+=== Quota infos ======
+    Path              Used     SoftQ    HardQ    Gracetime  Filec    FileQ    FiHaQ    FileGrace    
+    /home/hpc           25.0G    52.4G   104.9G        N/A     311K     500K   1,000K        N/A    
+    /home/vault          0.0K   524.3G  1048.6G        N/A       4      200K     400K        N/A    
+    /home/woody         65.5G   500.0G   750.0G        N/A     297K                          N/A    
+======================
+=== GPU utilization ==
+gpu_name, gpu_bus_id, pid, gpu_utilization [%], mem_utilization [%], max_memory_usage [MiB], time [ms]

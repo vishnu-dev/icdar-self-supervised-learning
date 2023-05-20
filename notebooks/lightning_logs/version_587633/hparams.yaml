@@ -1,0 +1,4 @@
+base_model_name: SimCLR
+features: 2048
+num_classes: 13
+learning_rate: 0.0002
