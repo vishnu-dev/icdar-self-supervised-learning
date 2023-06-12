@@ -51,3 +51,846 @@ SLURM auto-requeueing enabled. Setting signal handlers.
   rank_zero_warn(
 /home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
   warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+`Trainer.fit` stopped: `max_epochs=92` reached.
+[32m[I 2023-05-21 00:36:58,479][0m Trial 0 finished with value: 4.217589378356934 and parameters: {'learning_rate': 0.02777672024731588, 'batch_size': 128, 'max_epochs': 92, 'temperature': 0.5530256169263517}. Best is trial 0 with value: 4.217589378356934.[0m
+/home/hpc/iwfa/iwfa028h/dev/pr/icdar-self-supervised-learning/src/models/model_factory.py:11: UnderReviewWarning: The feature SimCLR is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return SimCLR(**model_kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:138: UnderReviewWarning: The feature resnet50 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return backbone(first_conv=self.first_conv, maxpool1=self.maxpool1, return_all_feature_maps=False)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:321: UnderReviewWarning: The feature _resnet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return _resnet("resnet50", Bottleneck, [3, 4, 6, 3], pretrained, progress, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:281: UnderReviewWarning: The feature ResNet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  model = ResNet(block, layers, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:223: UnderReviewWarning: The feature conv1x1 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  conv1x1(self.inplanes, planes * block.expansion, stride),
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:229: UnderReviewWarning: The feature Bottleneck is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  block(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:110: UnderReviewWarning: The feature conv3x3 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.conv2 = conv3x3(width, width, stride, groups, dilation)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:126: UnderReviewWarning: The feature Projection is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.projection = Projection(input_dim=self.hidden_mlp, hidden_dim=self.hidden_mlp, output_dim=self.feat_dim)
+[rank: 0] Global seed set to 42
+Using 16bit native Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:606: UserWarning: Checkpoint directory /home/woody/iwfa/iwfa028h/dev/faps/data/trained_models/SimCLR/lightning_logs/version_596001/checkpoints exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:219: UnderReviewWarning: The feature linear_warmup_decay is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  linear_warmup_decay(warmup_steps, total_steps, cosine=True),
+
+  | Name       | Type       | Params
+------------------------------------------
+0 | encoder    | ResNet     | 25.6 M
+1 | projection | Projection | 4.5 M 
+------------------------------------------
+30.0 M    Trainable params
+0         Non-trainable params
+30.0 M    Total params
+60.039    Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py:1555: PossibleUserWarning: The number of training batches (19) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+  rank_zero_warn(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+`Trainer.fit` stopped: `max_epochs=94` reached.
+[33m[W 2023-05-21 01:07:30,174][0m Trial 1 failed with parameters: {'learning_rate': 0.7220654212254785, 'batch_size': 128, 'max_epochs': 94, 'temperature': 0.6200857992281572} because of the following error: The value nan is not acceptable..[0m
+[33m[W 2023-05-21 01:07:30,174][0m Trial 1 failed with value nan.[0m
+/home/hpc/iwfa/iwfa028h/dev/pr/icdar-self-supervised-learning/src/models/model_factory.py:11: UnderReviewWarning: The feature SimCLR is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return SimCLR(**model_kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:138: UnderReviewWarning: The feature resnet50 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return backbone(first_conv=self.first_conv, maxpool1=self.maxpool1, return_all_feature_maps=False)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:321: UnderReviewWarning: The feature _resnet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return _resnet("resnet50", Bottleneck, [3, 4, 6, 3], pretrained, progress, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:281: UnderReviewWarning: The feature ResNet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  model = ResNet(block, layers, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:223: UnderReviewWarning: The feature conv1x1 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  conv1x1(self.inplanes, planes * block.expansion, stride),
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:229: UnderReviewWarning: The feature Bottleneck is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  block(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:110: UnderReviewWarning: The feature conv3x3 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.conv2 = conv3x3(width, width, stride, groups, dilation)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:126: UnderReviewWarning: The feature Projection is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.projection = Projection(input_dim=self.hidden_mlp, hidden_dim=self.hidden_mlp, output_dim=self.feat_dim)
+[rank: 0] Global seed set to 42
+Using 16bit native Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:606: UserWarning: Checkpoint directory /home/woody/iwfa/iwfa028h/dev/faps/data/trained_models/SimCLR/lightning_logs/version_596001/checkpoints exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:219: UnderReviewWarning: The feature linear_warmup_decay is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  linear_warmup_decay(warmup_steps, total_steps, cosine=True),
+
+  | Name       | Type       | Params
+------------------------------------------
+0 | encoder    | ResNet     | 25.6 M
+1 | projection | Projection | 4.5 M 
+------------------------------------------
+30.0 M    Trainable params
+0         Non-trainable params
+30.0 M    Total params
+60.039    Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py:1555: PossibleUserWarning: The number of training batches (9) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+  rank_zero_warn(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+`Trainer.fit` stopped: `max_epochs=82` reached.
+[32m[I 2023-05-21 01:46:53,540][0m Trial 2 finished with value: 4.770042419433594 and parameters: {'learning_rate': 0.6297988731936801, 'batch_size': 256, 'max_epochs': 82, 'temperature': 0.4574603079428308}. Best is trial 0 with value: 4.217589378356934.[0m
+/home/hpc/iwfa/iwfa028h/dev/pr/icdar-self-supervised-learning/src/models/model_factory.py:11: UnderReviewWarning: The feature SimCLR is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return SimCLR(**model_kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:138: UnderReviewWarning: The feature resnet50 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return backbone(first_conv=self.first_conv, maxpool1=self.maxpool1, return_all_feature_maps=False)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:321: UnderReviewWarning: The feature _resnet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return _resnet("resnet50", Bottleneck, [3, 4, 6, 3], pretrained, progress, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:281: UnderReviewWarning: The feature ResNet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  model = ResNet(block, layers, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:223: UnderReviewWarning: The feature conv1x1 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  conv1x1(self.inplanes, planes * block.expansion, stride),
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:229: UnderReviewWarning: The feature Bottleneck is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  block(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:110: UnderReviewWarning: The feature conv3x3 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.conv2 = conv3x3(width, width, stride, groups, dilation)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:126: UnderReviewWarning: The feature Projection is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.projection = Projection(input_dim=self.hidden_mlp, hidden_dim=self.hidden_mlp, output_dim=self.feat_dim)
+[rank: 0] Global seed set to 42
+Using 16bit native Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:606: UserWarning: Checkpoint directory /home/woody/iwfa/iwfa028h/dev/faps/data/trained_models/SimCLR/lightning_logs/version_596001/checkpoints exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:219: UnderReviewWarning: The feature linear_warmup_decay is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  linear_warmup_decay(warmup_steps, total_steps, cosine=True),
+
+  | Name       | Type       | Params
+------------------------------------------
+0 | encoder    | ResNet     | 25.6 M
+1 | projection | Projection | 4.5 M 
+------------------------------------------
+30.0 M    Trainable params
+0         Non-trainable params
+30.0 M    Total params
+60.039    Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py:1555: PossibleUserWarning: The number of training batches (9) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+  rank_zero_warn(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+`Trainer.fit` stopped: `max_epochs=60` reached.
+[32m[I 2023-05-21 02:15:42,883][0m Trial 3 finished with value: 5.160988807678223 and parameters: {'learning_rate': 0.687265070987905, 'batch_size': 256, 'max_epochs': 60, 'temperature': 0.5312860448478361}. Best is trial 0 with value: 4.217589378356934.[0m
+/home/hpc/iwfa/iwfa028h/dev/pr/icdar-self-supervised-learning/src/models/model_factory.py:11: UnderReviewWarning: The feature SimCLR is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return SimCLR(**model_kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:138: UnderReviewWarning: The feature resnet50 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return backbone(first_conv=self.first_conv, maxpool1=self.maxpool1, return_all_feature_maps=False)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:321: UnderReviewWarning: The feature _resnet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return _resnet("resnet50", Bottleneck, [3, 4, 6, 3], pretrained, progress, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:281: UnderReviewWarning: The feature ResNet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  model = ResNet(block, layers, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:223: UnderReviewWarning: The feature conv1x1 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  conv1x1(self.inplanes, planes * block.expansion, stride),
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:229: UnderReviewWarning: The feature Bottleneck is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  block(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:110: UnderReviewWarning: The feature conv3x3 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.conv2 = conv3x3(width, width, stride, groups, dilation)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:126: UnderReviewWarning: The feature Projection is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.projection = Projection(input_dim=self.hidden_mlp, hidden_dim=self.hidden_mlp, output_dim=self.feat_dim)
+[rank: 0] Global seed set to 42
+Using 16bit native Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:606: UserWarning: Checkpoint directory /home/woody/iwfa/iwfa028h/dev/faps/data/trained_models/SimCLR/lightning_logs/version_596001/checkpoints exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:219: UnderReviewWarning: The feature linear_warmup_decay is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  linear_warmup_decay(warmup_steps, total_steps, cosine=True),
+
+  | Name       | Type       | Params
+------------------------------------------
+0 | encoder    | ResNet     | 25.6 M
+1 | projection | Projection | 4.5 M 
+------------------------------------------
+30.0 M    Trainable params
+0         Non-trainable params
+30.0 M    Total params
+60.039    Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py:1555: PossibleUserWarning: The number of training batches (9) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+  rank_zero_warn(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+`Trainer.fit` stopped: `max_epochs=74` reached.
+[32m[I 2023-05-21 02:51:18,543][0m Trial 4 finished with value: 4.907057285308838 and parameters: {'learning_rate': 0.10399969627166998, 'batch_size': 256, 'max_epochs': 74, 'temperature': 0.5275070562103052}. Best is trial 0 with value: 4.217589378356934.[0m
+/home/hpc/iwfa/iwfa028h/dev/pr/icdar-self-supervised-learning/src/models/model_factory.py:11: UnderReviewWarning: The feature SimCLR is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return SimCLR(**model_kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:138: UnderReviewWarning: The feature resnet50 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return backbone(first_conv=self.first_conv, maxpool1=self.maxpool1, return_all_feature_maps=False)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:321: UnderReviewWarning: The feature _resnet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return _resnet("resnet50", Bottleneck, [3, 4, 6, 3], pretrained, progress, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:281: UnderReviewWarning: The feature ResNet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  model = ResNet(block, layers, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:223: UnderReviewWarning: The feature conv1x1 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  conv1x1(self.inplanes, planes * block.expansion, stride),
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:229: UnderReviewWarning: The feature Bottleneck is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  block(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:110: UnderReviewWarning: The feature conv3x3 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.conv2 = conv3x3(width, width, stride, groups, dilation)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:126: UnderReviewWarning: The feature Projection is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.projection = Projection(input_dim=self.hidden_mlp, hidden_dim=self.hidden_mlp, output_dim=self.feat_dim)
+[rank: 0] Global seed set to 42
+Using 16bit native Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:606: UserWarning: Checkpoint directory /home/woody/iwfa/iwfa028h/dev/faps/data/trained_models/SimCLR/lightning_logs/version_596001/checkpoints exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:219: UnderReviewWarning: The feature linear_warmup_decay is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  linear_warmup_decay(warmup_steps, total_steps, cosine=True),
+
+  | Name       | Type       | Params
+------------------------------------------
+0 | encoder    | ResNet     | 25.6 M
+1 | projection | Projection | 4.5 M 
+------------------------------------------
+30.0 M    Trainable params
+0         Non-trainable params
+30.0 M    Total params
+60.039    Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py:1555: PossibleUserWarning: The number of training batches (9) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+  rank_zero_warn(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+`Trainer.fit` stopped: `max_epochs=50` reached.
+[32m[I 2023-05-21 03:15:32,109][0m Trial 5 finished with value: 5.115380764007568 and parameters: {'learning_rate': 0.42813010594353407, 'batch_size': 256, 'max_epochs': 50, 'temperature': 0.5793543942718845}. Best is trial 0 with value: 4.217589378356934.[0m
+/home/hpc/iwfa/iwfa028h/dev/pr/icdar-self-supervised-learning/src/models/model_factory.py:11: UnderReviewWarning: The feature SimCLR is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return SimCLR(**model_kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:138: UnderReviewWarning: The feature resnet50 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return backbone(first_conv=self.first_conv, maxpool1=self.maxpool1, return_all_feature_maps=False)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:321: UnderReviewWarning: The feature _resnet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return _resnet("resnet50", Bottleneck, [3, 4, 6, 3], pretrained, progress, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:281: UnderReviewWarning: The feature ResNet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  model = ResNet(block, layers, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:223: UnderReviewWarning: The feature conv1x1 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  conv1x1(self.inplanes, planes * block.expansion, stride),
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:229: UnderReviewWarning: The feature Bottleneck is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  block(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:110: UnderReviewWarning: The feature conv3x3 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.conv2 = conv3x3(width, width, stride, groups, dilation)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:126: UnderReviewWarning: The feature Projection is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.projection = Projection(input_dim=self.hidden_mlp, hidden_dim=self.hidden_mlp, output_dim=self.feat_dim)
+[rank: 0] Global seed set to 42
+Using 16bit native Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:606: UserWarning: Checkpoint directory /home/woody/iwfa/iwfa028h/dev/faps/data/trained_models/SimCLR/lightning_logs/version_596001/checkpoints exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:219: UnderReviewWarning: The feature linear_warmup_decay is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  linear_warmup_decay(warmup_steps, total_steps, cosine=True),
+
+  | Name       | Type       | Params
+------------------------------------------
+0 | encoder    | ResNet     | 25.6 M
+1 | projection | Projection | 4.5 M 
+------------------------------------------
+30.0 M    Trainable params
+0         Non-trainable params
+30.0 M    Total params
+60.039    Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py:1555: PossibleUserWarning: The number of training batches (19) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+  rank_zero_warn(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+`Trainer.fit` stopped: `max_epochs=94` reached.
+[32m[I 2023-05-21 03:46:39,931][0m Trial 6 finished with value: 4.428576469421387 and parameters: {'learning_rate': 0.04918844278661981, 'batch_size': 128, 'max_epochs': 94, 'temperature': 0.6525935800537606}. Best is trial 0 with value: 4.217589378356934.[0m
+/home/hpc/iwfa/iwfa028h/dev/pr/icdar-self-supervised-learning/src/models/model_factory.py:11: UnderReviewWarning: The feature SimCLR is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return SimCLR(**model_kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:138: UnderReviewWarning: The feature resnet50 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return backbone(first_conv=self.first_conv, maxpool1=self.maxpool1, return_all_feature_maps=False)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:321: UnderReviewWarning: The feature _resnet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return _resnet("resnet50", Bottleneck, [3, 4, 6, 3], pretrained, progress, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:281: UnderReviewWarning: The feature ResNet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  model = ResNet(block, layers, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:223: UnderReviewWarning: The feature conv1x1 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  conv1x1(self.inplanes, planes * block.expansion, stride),
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:229: UnderReviewWarning: The feature Bottleneck is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  block(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:110: UnderReviewWarning: The feature conv3x3 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.conv2 = conv3x3(width, width, stride, groups, dilation)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:126: UnderReviewWarning: The feature Projection is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.projection = Projection(input_dim=self.hidden_mlp, hidden_dim=self.hidden_mlp, output_dim=self.feat_dim)
+[rank: 0] Global seed set to 42
+Using 16bit native Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:606: UserWarning: Checkpoint directory /home/woody/iwfa/iwfa028h/dev/faps/data/trained_models/SimCLR/lightning_logs/version_596001/checkpoints exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:219: UnderReviewWarning: The feature linear_warmup_decay is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  linear_warmup_decay(warmup_steps, total_steps, cosine=True),
+
+  | Name       | Type       | Params
+------------------------------------------
+0 | encoder    | ResNet     | 25.6 M
+1 | projection | Projection | 4.5 M 
+------------------------------------------
+30.0 M    Trainable params
+0         Non-trainable params
+30.0 M    Total params
+60.039    Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py:1555: PossibleUserWarning: The number of training batches (19) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+  rank_zero_warn(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+`Trainer.fit` stopped: `max_epochs=70` reached.
+[32m[I 2023-05-21 04:09:57,925][0m Trial 7 finished with value: 4.7281999588012695 and parameters: {'learning_rate': 0.40394284453578294, 'batch_size': 128, 'max_epochs': 70, 'temperature': 0.7422442043691164}. Best is trial 0 with value: 4.217589378356934.[0m
+/home/hpc/iwfa/iwfa028h/dev/pr/icdar-self-supervised-learning/src/models/model_factory.py:11: UnderReviewWarning: The feature SimCLR is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return SimCLR(**model_kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:138: UnderReviewWarning: The feature resnet50 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return backbone(first_conv=self.first_conv, maxpool1=self.maxpool1, return_all_feature_maps=False)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:321: UnderReviewWarning: The feature _resnet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return _resnet("resnet50", Bottleneck, [3, 4, 6, 3], pretrained, progress, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:281: UnderReviewWarning: The feature ResNet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  model = ResNet(block, layers, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:223: UnderReviewWarning: The feature conv1x1 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  conv1x1(self.inplanes, planes * block.expansion, stride),
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:229: UnderReviewWarning: The feature Bottleneck is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  block(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:110: UnderReviewWarning: The feature conv3x3 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.conv2 = conv3x3(width, width, stride, groups, dilation)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:126: UnderReviewWarning: The feature Projection is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.projection = Projection(input_dim=self.hidden_mlp, hidden_dim=self.hidden_mlp, output_dim=self.feat_dim)
+[rank: 0] Global seed set to 42
+Using 16bit native Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:606: UserWarning: Checkpoint directory /home/woody/iwfa/iwfa028h/dev/faps/data/trained_models/SimCLR/lightning_logs/version_596001/checkpoints exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:219: UnderReviewWarning: The feature linear_warmup_decay is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  linear_warmup_decay(warmup_steps, total_steps, cosine=True),
+
+  | Name       | Type       | Params
+------------------------------------------
+0 | encoder    | ResNet     | 25.6 M
+1 | projection | Projection | 4.5 M 
+------------------------------------------
+30.0 M    Trainable params
+0         Non-trainable params
+30.0 M    Total params
+60.039    Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py:1555: PossibleUserWarning: The number of training batches (19) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+  rank_zero_warn(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+`Trainer.fit` stopped: `max_epochs=72` reached.
+[33m[W 2023-05-21 04:33:35,010][0m Trial 8 failed with parameters: {'learning_rate': 0.7795207115716464, 'batch_size': 128, 'max_epochs': 72, 'temperature': 0.5124353260343237} because of the following error: The value nan is not acceptable..[0m
+[33m[W 2023-05-21 04:33:35,011][0m Trial 8 failed with value nan.[0m
+/home/hpc/iwfa/iwfa028h/dev/pr/icdar-self-supervised-learning/src/models/model_factory.py:11: UnderReviewWarning: The feature SimCLR is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return SimCLR(**model_kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:138: UnderReviewWarning: The feature resnet50 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return backbone(first_conv=self.first_conv, maxpool1=self.maxpool1, return_all_feature_maps=False)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:321: UnderReviewWarning: The feature _resnet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return _resnet("resnet50", Bottleneck, [3, 4, 6, 3], pretrained, progress, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:281: UnderReviewWarning: The feature ResNet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  model = ResNet(block, layers, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:223: UnderReviewWarning: The feature conv1x1 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  conv1x1(self.inplanes, planes * block.expansion, stride),
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:229: UnderReviewWarning: The feature Bottleneck is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  block(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:110: UnderReviewWarning: The feature conv3x3 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.conv2 = conv3x3(width, width, stride, groups, dilation)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:126: UnderReviewWarning: The feature Projection is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.projection = Projection(input_dim=self.hidden_mlp, hidden_dim=self.hidden_mlp, output_dim=self.feat_dim)
+[rank: 0] Global seed set to 42
+Using 16bit native Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:606: UserWarning: Checkpoint directory /home/woody/iwfa/iwfa028h/dev/faps/data/trained_models/SimCLR/lightning_logs/version_596001/checkpoints exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:219: UnderReviewWarning: The feature linear_warmup_decay is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  linear_warmup_decay(warmup_steps, total_steps, cosine=True),
+
+  | Name       | Type       | Params
+------------------------------------------
+0 | encoder    | ResNet     | 25.6 M
+1 | projection | Projection | 4.5 M 
+------------------------------------------
+30.0 M    Trainable params
+0         Non-trainable params
+30.0 M    Total params
+60.039    Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py:1555: PossibleUserWarning: The number of training batches (19) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+  rank_zero_warn(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+`Trainer.fit` stopped: `max_epochs=60` reached.
+[32m[I 2023-05-21 04:53:29,067][0m Trial 9 finished with value: 4.718709468841553 and parameters: {'learning_rate': 0.792175866496146, 'batch_size': 128, 'max_epochs': 60, 'temperature': 0.6182747709159366}. Best is trial 0 with value: 4.217589378356934.[0m
+/home/hpc/iwfa/iwfa028h/dev/pr/icdar-self-supervised-learning/src/models/model_factory.py:11: UnderReviewWarning: The feature SimCLR is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return SimCLR(**model_kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:138: UnderReviewWarning: The feature resnet50 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return backbone(first_conv=self.first_conv, maxpool1=self.maxpool1, return_all_feature_maps=False)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:321: UnderReviewWarning: The feature _resnet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return _resnet("resnet50", Bottleneck, [3, 4, 6, 3], pretrained, progress, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:281: UnderReviewWarning: The feature ResNet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  model = ResNet(block, layers, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:223: UnderReviewWarning: The feature conv1x1 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  conv1x1(self.inplanes, planes * block.expansion, stride),
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:229: UnderReviewWarning: The feature Bottleneck is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  block(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:110: UnderReviewWarning: The feature conv3x3 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.conv2 = conv3x3(width, width, stride, groups, dilation)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:126: UnderReviewWarning: The feature Projection is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.projection = Projection(input_dim=self.hidden_mlp, hidden_dim=self.hidden_mlp, output_dim=self.feat_dim)
+[rank: 0] Global seed set to 42
+Using 16bit native Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:606: UserWarning: Checkpoint directory /home/woody/iwfa/iwfa028h/dev/faps/data/trained_models/SimCLR/lightning_logs/version_596001/checkpoints exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:219: UnderReviewWarning: The feature linear_warmup_decay is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  linear_warmup_decay(warmup_steps, total_steps, cosine=True),
+
+  | Name       | Type       | Params
+------------------------------------------
+0 | encoder    | ResNet     | 25.6 M
+1 | projection | Projection | 4.5 M 
+------------------------------------------
+30.0 M    Trainable params
+0         Non-trainable params
+30.0 M    Total params
+60.039    Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py:1555: PossibleUserWarning: The number of training batches (19) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+  rank_zero_warn(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+`Trainer.fit` stopped: `max_epochs=86` reached.
+[32m[I 2023-05-21 05:21:58,953][0m Trial 10 finished with value: 4.457263946533203 and parameters: {'learning_rate': 0.20796208010706005, 'batch_size': 128, 'max_epochs': 86, 'temperature': 0.5696302496995994}. Best is trial 0 with value: 4.217589378356934.[0m
+/home/hpc/iwfa/iwfa028h/dev/pr/icdar-self-supervised-learning/src/models/model_factory.py:11: UnderReviewWarning: The feature SimCLR is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return SimCLR(**model_kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:138: UnderReviewWarning: The feature resnet50 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return backbone(first_conv=self.first_conv, maxpool1=self.maxpool1, return_all_feature_maps=False)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:321: UnderReviewWarning: The feature _resnet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return _resnet("resnet50", Bottleneck, [3, 4, 6, 3], pretrained, progress, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:281: UnderReviewWarning: The feature ResNet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  model = ResNet(block, layers, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:223: UnderReviewWarning: The feature conv1x1 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  conv1x1(self.inplanes, planes * block.expansion, stride),
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:229: UnderReviewWarning: The feature Bottleneck is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  block(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:110: UnderReviewWarning: The feature conv3x3 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.conv2 = conv3x3(width, width, stride, groups, dilation)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:126: UnderReviewWarning: The feature Projection is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.projection = Projection(input_dim=self.hidden_mlp, hidden_dim=self.hidden_mlp, output_dim=self.feat_dim)
+[rank: 0] Global seed set to 42
+Using 16bit native Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:606: UserWarning: Checkpoint directory /home/woody/iwfa/iwfa028h/dev/faps/data/trained_models/SimCLR/lightning_logs/version_596001/checkpoints exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:219: UnderReviewWarning: The feature linear_warmup_decay is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  linear_warmup_decay(warmup_steps, total_steps, cosine=True),
+
+  | Name       | Type       | Params
+------------------------------------------
+0 | encoder    | ResNet     | 25.6 M
+1 | projection | Projection | 4.5 M 
+------------------------------------------
+30.0 M    Trainable params
+0         Non-trainable params
+30.0 M    Total params
+60.039    Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py:1555: PossibleUserWarning: The number of training batches (9) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+  rank_zero_warn(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+`Trainer.fit` stopped: `max_epochs=50` reached.
+[32m[I 2023-05-21 05:46:26,208][0m Trial 11 finished with value: 5.2886061668396 and parameters: {'learning_rate': 0.08186463168756415, 'batch_size': 256, 'max_epochs': 50, 'temperature': 0.7882975049559832}. Best is trial 0 with value: 4.217589378356934.[0m
+/home/hpc/iwfa/iwfa028h/dev/pr/icdar-self-supervised-learning/src/models/model_factory.py:11: UnderReviewWarning: The feature SimCLR is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return SimCLR(**model_kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:138: UnderReviewWarning: The feature resnet50 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return backbone(first_conv=self.first_conv, maxpool1=self.maxpool1, return_all_feature_maps=False)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:321: UnderReviewWarning: The feature _resnet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return _resnet("resnet50", Bottleneck, [3, 4, 6, 3], pretrained, progress, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:281: UnderReviewWarning: The feature ResNet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  model = ResNet(block, layers, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:223: UnderReviewWarning: The feature conv1x1 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  conv1x1(self.inplanes, planes * block.expansion, stride),
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:229: UnderReviewWarning: The feature Bottleneck is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  block(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:110: UnderReviewWarning: The feature conv3x3 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.conv2 = conv3x3(width, width, stride, groups, dilation)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:126: UnderReviewWarning: The feature Projection is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.projection = Projection(input_dim=self.hidden_mlp, hidden_dim=self.hidden_mlp, output_dim=self.feat_dim)
+[rank: 0] Global seed set to 42
+Using 16bit native Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:606: UserWarning: Checkpoint directory /home/woody/iwfa/iwfa028h/dev/faps/data/trained_models/SimCLR/lightning_logs/version_596001/checkpoints exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:219: UnderReviewWarning: The feature linear_warmup_decay is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  linear_warmup_decay(warmup_steps, total_steps, cosine=True),
+
+  | Name       | Type       | Params
+------------------------------------------
+0 | encoder    | ResNet     | 25.6 M
+1 | projection | Projection | 4.5 M 
+------------------------------------------
+30.0 M    Trainable params
+0         Non-trainable params
+30.0 M    Total params
+60.039    Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py:1555: PossibleUserWarning: The number of training batches (19) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+  rank_zero_warn(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+`Trainer.fit` stopped: `max_epochs=94` reached.
+[32m[I 2023-05-21 06:17:42,152][0m Trial 12 finished with value: 3.9995744228363037 and parameters: {'learning_rate': 0.9950979592541533, 'batch_size': 128, 'max_epochs': 94, 'temperature': 0.3616819027164474}. Best is trial 12 with value: 3.9995744228363037.[0m
+/home/hpc/iwfa/iwfa028h/dev/pr/icdar-self-supervised-learning/src/models/model_factory.py:11: UnderReviewWarning: The feature SimCLR is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return SimCLR(**model_kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:138: UnderReviewWarning: The feature resnet50 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return backbone(first_conv=self.first_conv, maxpool1=self.maxpool1, return_all_feature_maps=False)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:321: UnderReviewWarning: The feature _resnet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return _resnet("resnet50", Bottleneck, [3, 4, 6, 3], pretrained, progress, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:281: UnderReviewWarning: The feature ResNet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  model = ResNet(block, layers, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:223: UnderReviewWarning: The feature conv1x1 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  conv1x1(self.inplanes, planes * block.expansion, stride),
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:229: UnderReviewWarning: The feature Bottleneck is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  block(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:110: UnderReviewWarning: The feature conv3x3 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.conv2 = conv3x3(width, width, stride, groups, dilation)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:126: UnderReviewWarning: The feature Projection is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.projection = Projection(input_dim=self.hidden_mlp, hidden_dim=self.hidden_mlp, output_dim=self.feat_dim)
+[rank: 0] Global seed set to 42
+Using 16bit native Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:606: UserWarning: Checkpoint directory /home/woody/iwfa/iwfa028h/dev/faps/data/trained_models/SimCLR/lightning_logs/version_596001/checkpoints exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:219: UnderReviewWarning: The feature linear_warmup_decay is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  linear_warmup_decay(warmup_steps, total_steps, cosine=True),
+
+  | Name       | Type       | Params
+------------------------------------------
+0 | encoder    | ResNet     | 25.6 M
+1 | projection | Projection | 4.5 M 
+------------------------------------------
+30.0 M    Trainable params
+0         Non-trainable params
+30.0 M    Total params
+60.039    Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py:1555: PossibleUserWarning: The number of training batches (19) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+  rank_zero_warn(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+`Trainer.fit` stopped: `max_epochs=98` reached.
+[32m[I 2023-05-21 06:50:11,677][0m Trial 13 finished with value: 4.31339168548584 and parameters: {'learning_rate': 0.8644533284515651, 'batch_size': 128, 'max_epochs': 98, 'temperature': 0.30070051923771784}. Best is trial 12 with value: 3.9995744228363037.[0m
+/home/hpc/iwfa/iwfa028h/dev/pr/icdar-self-supervised-learning/src/models/model_factory.py:11: UnderReviewWarning: The feature SimCLR is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return SimCLR(**model_kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:138: UnderReviewWarning: The feature resnet50 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return backbone(first_conv=self.first_conv, maxpool1=self.maxpool1, return_all_feature_maps=False)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:321: UnderReviewWarning: The feature _resnet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return _resnet("resnet50", Bottleneck, [3, 4, 6, 3], pretrained, progress, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:281: UnderReviewWarning: The feature ResNet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  model = ResNet(block, layers, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:223: UnderReviewWarning: The feature conv1x1 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  conv1x1(self.inplanes, planes * block.expansion, stride),
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:229: UnderReviewWarning: The feature Bottleneck is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  block(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:110: UnderReviewWarning: The feature conv3x3 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.conv2 = conv3x3(width, width, stride, groups, dilation)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:126: UnderReviewWarning: The feature Projection is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.projection = Projection(input_dim=self.hidden_mlp, hidden_dim=self.hidden_mlp, output_dim=self.feat_dim)
+[rank: 0] Global seed set to 42
+Using 16bit native Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:606: UserWarning: Checkpoint directory /home/woody/iwfa/iwfa028h/dev/faps/data/trained_models/SimCLR/lightning_logs/version_596001/checkpoints exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:219: UnderReviewWarning: The feature linear_warmup_decay is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  linear_warmup_decay(warmup_steps, total_steps, cosine=True),
+
+  | Name       | Type       | Params
+------------------------------------------
+0 | encoder    | ResNet     | 25.6 M
+1 | projection | Projection | 4.5 M 
+------------------------------------------
+30.0 M    Trainable params
+0         Non-trainable params
+30.0 M    Total params
+60.039    Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py:1555: PossibleUserWarning: The number of training batches (19) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+  rank_zero_warn(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+`Trainer.fit` stopped: `max_epochs=100` reached.
+[33m[W 2023-05-21 07:22:53,050][0m Trial 14 failed with parameters: {'learning_rate': 0.959180976633446, 'batch_size': 128, 'max_epochs': 100, 'temperature': 0.33577370393350325} because of the following error: The value nan is not acceptable..[0m
+[33m[W 2023-05-21 07:22:53,050][0m Trial 14 failed with value nan.[0m
+/home/hpc/iwfa/iwfa028h/dev/pr/icdar-self-supervised-learning/src/models/model_factory.py:11: UnderReviewWarning: The feature SimCLR is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return SimCLR(**model_kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:138: UnderReviewWarning: The feature resnet50 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return backbone(first_conv=self.first_conv, maxpool1=self.maxpool1, return_all_feature_maps=False)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:321: UnderReviewWarning: The feature _resnet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return _resnet("resnet50", Bottleneck, [3, 4, 6, 3], pretrained, progress, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:281: UnderReviewWarning: The feature ResNet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  model = ResNet(block, layers, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:223: UnderReviewWarning: The feature conv1x1 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  conv1x1(self.inplanes, planes * block.expansion, stride),
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:229: UnderReviewWarning: The feature Bottleneck is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  block(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:110: UnderReviewWarning: The feature conv3x3 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.conv2 = conv3x3(width, width, stride, groups, dilation)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:126: UnderReviewWarning: The feature Projection is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.projection = Projection(input_dim=self.hidden_mlp, hidden_dim=self.hidden_mlp, output_dim=self.feat_dim)
+[rank: 0] Global seed set to 42
+Using 16bit native Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:606: UserWarning: Checkpoint directory /home/woody/iwfa/iwfa028h/dev/faps/data/trained_models/SimCLR/lightning_logs/version_596001/checkpoints exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:219: UnderReviewWarning: The feature linear_warmup_decay is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  linear_warmup_decay(warmup_steps, total_steps, cosine=True),
+
+  | Name       | Type       | Params
+------------------------------------------
+0 | encoder    | ResNet     | 25.6 M
+1 | projection | Projection | 4.5 M 
+------------------------------------------
+30.0 M    Trainable params
+0         Non-trainable params
+30.0 M    Total params
+60.039    Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py:1555: PossibleUserWarning: The number of training batches (19) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+  rank_zero_warn(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+`Trainer.fit` stopped: `max_epochs=31` reached.
+[33m[W 2023-05-21 07:33:08,173][0m Trial 15 failed with parameters: {'learning_rate': 0.992576789608468, 'batch_size': 128, 'max_epochs': 31, 'temperature': 0.40950228071075306} because of the following error: The value nan is not acceptable..[0m
+[33m[W 2023-05-21 07:33:08,174][0m Trial 15 failed with value nan.[0m
+/home/hpc/iwfa/iwfa028h/dev/pr/icdar-self-supervised-learning/src/models/model_factory.py:11: UnderReviewWarning: The feature SimCLR is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return SimCLR(**model_kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:138: UnderReviewWarning: The feature resnet50 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return backbone(first_conv=self.first_conv, maxpool1=self.maxpool1, return_all_feature_maps=False)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:321: UnderReviewWarning: The feature _resnet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return _resnet("resnet50", Bottleneck, [3, 4, 6, 3], pretrained, progress, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:281: UnderReviewWarning: The feature ResNet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  model = ResNet(block, layers, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:223: UnderReviewWarning: The feature conv1x1 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  conv1x1(self.inplanes, planes * block.expansion, stride),
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:229: UnderReviewWarning: The feature Bottleneck is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  block(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:110: UnderReviewWarning: The feature conv3x3 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.conv2 = conv3x3(width, width, stride, groups, dilation)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:126: UnderReviewWarning: The feature Projection is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.projection = Projection(input_dim=self.hidden_mlp, hidden_dim=self.hidden_mlp, output_dim=self.feat_dim)
+[rank: 0] Global seed set to 42
+Using 16bit native Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:606: UserWarning: Checkpoint directory /home/woody/iwfa/iwfa028h/dev/faps/data/trained_models/SimCLR/lightning_logs/version_596001/checkpoints exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:219: UnderReviewWarning: The feature linear_warmup_decay is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  linear_warmup_decay(warmup_steps, total_steps, cosine=True),
+
+  | Name       | Type       | Params
+------------------------------------------
+0 | encoder    | ResNet     | 25.6 M
+1 | projection | Projection | 4.5 M 
+------------------------------------------
+30.0 M    Trainable params
+0         Non-trainable params
+30.0 M    Total params
+60.039    Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py:1555: PossibleUserWarning: The number of training batches (19) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+  rank_zero_warn(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+`Trainer.fit` stopped: `max_epochs=33` reached.
+[33m[W 2023-05-21 07:44:04,726][0m Trial 16 failed with parameters: {'learning_rate': 0.98131111949019, 'batch_size': 128, 'max_epochs': 33, 'temperature': 0.41340939791958536} because of the following error: The value nan is not acceptable..[0m
+[33m[W 2023-05-21 07:44:04,727][0m Trial 16 failed with value nan.[0m
+/home/hpc/iwfa/iwfa028h/dev/pr/icdar-self-supervised-learning/src/models/model_factory.py:11: UnderReviewWarning: The feature SimCLR is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return SimCLR(**model_kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:138: UnderReviewWarning: The feature resnet50 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return backbone(first_conv=self.first_conv, maxpool1=self.maxpool1, return_all_feature_maps=False)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:321: UnderReviewWarning: The feature _resnet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return _resnet("resnet50", Bottleneck, [3, 4, 6, 3], pretrained, progress, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:281: UnderReviewWarning: The feature ResNet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  model = ResNet(block, layers, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:223: UnderReviewWarning: The feature conv1x1 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  conv1x1(self.inplanes, planes * block.expansion, stride),
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:229: UnderReviewWarning: The feature Bottleneck is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  block(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:110: UnderReviewWarning: The feature conv3x3 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.conv2 = conv3x3(width, width, stride, groups, dilation)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:126: UnderReviewWarning: The feature Projection is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.projection = Projection(input_dim=self.hidden_mlp, hidden_dim=self.hidden_mlp, output_dim=self.feat_dim)
+[rank: 0] Global seed set to 42
+Using 16bit native Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:606: UserWarning: Checkpoint directory /home/woody/iwfa/iwfa028h/dev/faps/data/trained_models/SimCLR/lightning_logs/version_596001/checkpoints exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:219: UnderReviewWarning: The feature linear_warmup_decay is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  linear_warmup_decay(warmup_steps, total_steps, cosine=True),
+
+  | Name       | Type       | Params
+------------------------------------------
+0 | encoder    | ResNet     | 25.6 M
+1 | projection | Projection | 4.5 M 
+------------------------------------------
+30.0 M    Trainable params
+0         Non-trainable params
+30.0 M    Total params
+60.039    Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py:1555: PossibleUserWarning: The number of training batches (19) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+  rank_zero_warn(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+`Trainer.fit` stopped: `max_epochs=100` reached.
+[32m[I 2023-05-21 08:17:00,718][0m Trial 17 finished with value: 4.550957679748535 and parameters: {'learning_rate': 0.9581588635263389, 'batch_size': 128, 'max_epochs': 100, 'temperature': 0.4188231283222825}. Best is trial 12 with value: 3.9995744228363037.[0m
+/home/hpc/iwfa/iwfa028h/dev/pr/icdar-self-supervised-learning/src/models/model_factory.py:11: UnderReviewWarning: The feature SimCLR is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return SimCLR(**model_kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:138: UnderReviewWarning: The feature resnet50 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return backbone(first_conv=self.first_conv, maxpool1=self.maxpool1, return_all_feature_maps=False)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:321: UnderReviewWarning: The feature _resnet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return _resnet("resnet50", Bottleneck, [3, 4, 6, 3], pretrained, progress, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:281: UnderReviewWarning: The feature ResNet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  model = ResNet(block, layers, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:223: UnderReviewWarning: The feature conv1x1 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  conv1x1(self.inplanes, planes * block.expansion, stride),
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:229: UnderReviewWarning: The feature Bottleneck is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  block(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:110: UnderReviewWarning: The feature conv3x3 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.conv2 = conv3x3(width, width, stride, groups, dilation)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:126: UnderReviewWarning: The feature Projection is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.projection = Projection(input_dim=self.hidden_mlp, hidden_dim=self.hidden_mlp, output_dim=self.feat_dim)
+[rank: 0] Global seed set to 42
+Using 16bit native Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:606: UserWarning: Checkpoint directory /home/woody/iwfa/iwfa028h/dev/faps/data/trained_models/SimCLR/lightning_logs/version_596001/checkpoints exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:219: UnderReviewWarning: The feature linear_warmup_decay is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  linear_warmup_decay(warmup_steps, total_steps, cosine=True),
+
+  | Name       | Type       | Params
+------------------------------------------
+0 | encoder    | ResNet     | 25.6 M
+1 | projection | Projection | 4.5 M 
+------------------------------------------
+30.0 M    Trainable params
+0         Non-trainable params
+30.0 M    Total params
+60.039    Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py:1555: PossibleUserWarning: The number of training batches (19) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+  rank_zero_warn(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+`Trainer.fit` stopped: `max_epochs=31` reached.
+[32m[I 2023-05-21 08:27:28,823][0m Trial 18 finished with value: 4.928328514099121 and parameters: {'learning_rate': 0.3027308844060492, 'batch_size': 128, 'max_epochs': 31, 'temperature': 0.3470136761560659}. Best is trial 12 with value: 3.9995744228363037.[0m
+/home/hpc/iwfa/iwfa028h/dev/pr/icdar-self-supervised-learning/src/models/model_factory.py:11: UnderReviewWarning: The feature SimCLR is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return SimCLR(**model_kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:138: UnderReviewWarning: The feature resnet50 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return backbone(first_conv=self.first_conv, maxpool1=self.maxpool1, return_all_feature_maps=False)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:321: UnderReviewWarning: The feature _resnet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  return _resnet("resnet50", Bottleneck, [3, 4, 6, 3], pretrained, progress, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:281: UnderReviewWarning: The feature ResNet is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  model = ResNet(block, layers, **kwargs)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:223: UnderReviewWarning: The feature conv1x1 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  conv1x1(self.inplanes, planes * block.expansion, stride),
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:229: UnderReviewWarning: The feature Bottleneck is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  block(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/resnets.py:110: UnderReviewWarning: The feature conv3x3 is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.conv2 = conv3x3(width, width, stride, groups, dilation)
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:126: UnderReviewWarning: The feature Projection is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.projection = Projection(input_dim=self.hidden_mlp, hidden_dim=self.hidden_mlp, output_dim=self.feat_dim)
+[rank: 0] Global seed set to 42
+Using 16bit native Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:606: UserWarning: Checkpoint directory /home/woody/iwfa/iwfa028h/dev/faps/data/trained_models/SimCLR/lightning_logs/version_596001/checkpoints exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pl_bolts/models/self_supervised/simclr/simclr_module.py:219: UnderReviewWarning: The feature linear_warmup_decay is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  linear_warmup_decay(warmup_steps, total_steps, cosine=True),
+
+  | Name       | Type       | Params
+------------------------------------------
+0 | encoder    | ResNet     | 25.6 M
+1 | projection | Projection | 4.5 M 
+------------------------------------------
+30.0 M    Trainable params
+0         Non-trainable params
+30.0 M    Total params
+60.039    Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py:1555: PossibleUserWarning: The number of training batches (19) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+  rank_zero_warn(
+/home/hpc/iwfa/iwfa028h/.conda/envs/lme/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+`Trainer.fit` stopped: `max_epochs=90` reached.
+[32m[I 2023-05-21 08:57:30,700][0m Trial 19 finished with value: 4.381654739379883 and parameters: {'learning_rate': 0.5327506237628021, 'batch_size': 128, 'max_epochs': 90, 'temperature': 0.4520593471312078}. Best is trial 12 with value: 3.9995744228363037.[0m

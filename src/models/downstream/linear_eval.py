@@ -8,7 +8,7 @@ import pytorch_lightning as pl
 
 class DownstreamClassifier(pl.LightningModule):
     
-    def __init__(self, base_model=None, features=2048, num_classes=13, learning_rate=1e-2, batch_size=64):
+    def __init__(self, base_model=None, features=2048, num_classes=13, learning_rate=1e-2, batch_size=64, **kwargs):
         super().__init__()
         
         self.save_hyperparameters()
@@ -26,9 +26,9 @@ class DownstreamClassifier(pl.LightningModule):
     def forward(self, x):
         
         with no_grad():
-            x = self.base_model(x)
+            x = self.base_model(x)[-1]
         x = self.classifier(x)
-                
+        
         return x
 
     def training_step(self, batch, batch_idx):

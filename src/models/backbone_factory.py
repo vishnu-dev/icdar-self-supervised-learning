@@ -7,7 +7,8 @@ from models.mae.model import MAE
 
 def backbone_factory(model_name, checkpoint, **model_kwargs):
     if model_name.lower() == 'simclr':
-        return SimCLR.load_from_checkpoint(checkpoint, **model_kwargs)
+        model = SimCLR.load_from_checkpoint(checkpoint, **model_kwargs)
+        return model.encoder
     elif model_name.lower() == 'mae':
         return MAE.load_from_checkpoint(checkpoint, **model_kwargs)
     elif model_name.lower() == 'byol':

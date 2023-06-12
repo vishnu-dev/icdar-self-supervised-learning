@@ -1,0 +1,7 @@
+- paths.icdar_root_dir=/dev/shm/ICDAR2017_CLaMM_Training/
+- paths.icdar_label_path=/dev/shm/ICDAR2017_CLaMM_Training/@ICDAR2017_CLaMM_Training.csv
+- trainer.max_epochs=500
+- dataset.batch_size=64
+- model.name=simclr
+- model.learning_rate=0.0015
+- model.temperature=0.35

@@ -1,51 +1,63 @@
-import click
+import os
+from omegaconf import DictConfig, OmegaConf
+import hydra
+    
 from data.data_factory import data_factory
 from data.transforms import transform_factory
 from data.collate import collate_factory
 from models.model_factory import model_factory
 from pipeline.lightning import LightningPipeline
-from models.mae.mask_generator import MaskingGenerator
-
-"""
-python cli.py --root-dir=/home/woody/iwfa/iwfa028h/dev/faps/data/ICDAR2017_CLaMM_Training --label-path=/home/woody/iwfa/iwfa028h/dev/faps/data/ICDAR2017_CLaMM_Training/@ICDAR2017_CLaMM_Training.csv --max-epochs=100 --batch-size=32 --model-name=mae
-"""
 
 
-@click.command()
-@click.option('--root-dir', help='Dataset root directory', required=True)
-@click.option('--label-path', help='Label CSV filepath', required=True)
-@click.option('--dataset', default='icdar', help='Dataset name')
-@click.option('--model-name', default='simclr', help='Model to run')
-@click.option('--mode', default='train', help='Execution mode (train, test)')
-@click.option('--max-epochs', default=100, type=int, help='Maximum number of epochs')
-@click.option('--batch-size', default=32, type=int, help='Batch size')
-@click.option('--num-cpus', default=8, type=int, help='Number of CPUs for data loading')
-@click.option('--learning-rate', default=0.001, type=float, help='Learning rate')
-def execute(root_dir, label_path, dataset, model_name, mode, max_epochs, batch_size, num_cpus, learning_rate):
-
-    transforms = transform_factory(model_name, mode)
+@hydra.main(version_base=None, config_path='config', config_name='config')
+def execute(cfg: DictConfig):
+    print(OmegaConf.to_yaml(cfg))
     
-    collate_fn = collate_factory(model_name)
+    transforms = transform_factory(
+        cfg.model.name,
+        cfg.mode.name,
+        cfg.model.augmentations,
+        cfg.dataset.mean,
+        cfg.dataset.std
+    )
+    print('Transforms: ', transforms)
     
-    data_loader = data_factory(dataset, root_dir, label_path, transforms, mode, batch_size, collate_fn, num_cpus)
+    collate_fn = collate_factory(cfg.model.name)
+    print('Collate: ', collate_fn)
+    
+    dataloaders = data_factory(
+        cfg.dataset.name,
+        cfg.dataset.root_dir,
+        cfg.dataset.label_path,
+        cfg.dataset.train_val_test_ratio,
+        transforms,
+        cfg.mode.name,
+        cfg.dataset.batch_size,
+        collate_fn,
+        cfg.dataset.num_workers
+    )
+    
+    for name, dataloader in dataloaders.items():
+        print(f'{name} dataloader: ', len(dataloader.dataset))
     
     model_class = model_factory(
-        model_name,
-        gpus=-1,
-        num_samples=len(data_loader.get(mode).dataset),
-        max_epochs=max_epochs,
-        batch_size=batch_size,
-        dataset=dataset,
-        learning_rate=learning_rate
+        cfg.model.name,
+        gpus=cfg.model.gpus,
+        num_samples=len(dataloaders.get(cfg.mode.name).dataset),
+        max_epochs=cfg.trainer.max_epochs,
+        batch_size=cfg.dataset.batch_size,
+        dataset=cfg.dataset.name,
+        **cfg.model.params
     )
+    print('Model class: ', model_class.__class__.__name__)
 
     pipeline = LightningPipeline(
-        root_dir,
+        os.path.join(cfg.trainer.default_root_dir, model_class.__class__.__name__),
         model_class,
-        mode,
-        data_loader,
-        max_epochs,
-        batch_size
+        cfg.mode.name,
+        dataloaders,
+        cfg.dataset.batch_size,
+        cfg.trainer
     )
 
     pipeline.run()

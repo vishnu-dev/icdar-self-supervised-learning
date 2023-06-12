@@ -1,0 +1,77 @@
+paths:
+  icdar_root_dir: /home/woody/iwfa/iwfa028h/dev/faps/data/ICDAR2017_CLaMM_Large
+  icdar_label_path: /home/woody/iwfa/iwfa028h/dev/faps/data/ICDAR2017_CLaMM_Large/@ICDAR2017_CLaMM_Large.csv
+  output_dir: /home/woody/iwfa/iwfa028h/dev/faps/data/trained_models/
+dataset:
+  name: icdar
+  root_dir: ${paths.icdar_root_dir}
+  label_path: ${paths.icdar_label_path}
+  batch_size: 128
+  train_val_test_ratio:
+  - 0.7
+  - 0.1
+  - 0.2
+  num_workers: 8
+  pin_memory: true
+  mean:
+  - 0.7013
+  - 0.7013
+  - 0.7013
+  std:
+  - 0.251
+  - 0.251
+  - 0.251
+model:
+  name: simclr
+  learning_rate: 0.015
+  gpus: -1
+  params:
+    temperature: 0.35
+  augmentations:
+    train:
+    - _target_: torchvision.transforms.RandomResizedCrop
+      size: 224
+    - _target_: torchvision.transforms.RandomHorizontalFlip
+      p: 0.5
+    - _target_: torchvision.transforms.RandomApply
+      transforms:
+      - _target_: torchvision.transforms.GaussianBlur
+        kernel_size: 23
+      p: 0.5
+    - _target_: torchvision.transforms.RandomApply
+      transforms:
+      - _target_: torchvision.transforms.RandomRotation
+        degrees:
+        - -25
+        - 25
+      p: 0.5
+    - _target_: torchvision.transforms.ToTensor
+    - _target_: torchvision.transforms.RandomErasing
+      p: 0.5
+    - _target_: torchvision.transforms.RandomApply
+      transforms:
+      - _target_: data.augment.Dilation
+        kernel_size: 5
+      p: 0.5
+    - _target_: torchvision.transforms.RandomApply
+      transforms:
+      - _target_: data.augment.Erosion
+        kernel_size: 3
+      p: 0.5
+    - _target_: torchvision.transforms.Normalize
+      mean: ${dataset.mean}
+      std: ${dataset.std}
+  temperature: 0.35
+mode:
+  name: train
+trainer:
+  default_root_dir: ${paths.output_dir}
+  max_epochs: 200
+  accelerator: gpu
+  devices: -1
+  precision: 16
+  log_every_n_steps: 10
+  train_val_test_split:
+  - 0.7
+  - 0.1
+  - 0.2

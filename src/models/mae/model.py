@@ -8,20 +8,22 @@ from lightly.models.modules import masked_autoencoder
 
 
 class MAE(pl.LightningModule):
-    def __init__(self, **kwargs):
+    def __init__(
+        self, learning_rate=1.5e-3, mask_ratio=0.75, decoder_dim=512, decoder_layers=8, decoder_heads=16, **kwargs
+    ):
         super().__init__()
         self.save_hyperparameters()
-        decoder_dim = 512
-        vit = torchvision.models.vit_l_16(weights=None)
-        self.mask_ratio = 0.75
+        vit = torchvision.models.vit_l_16(pretrained=False)
+        self.learning_rate = learning_rate
+        self.mask_ratio = mask_ratio
         self.patch_size = vit.patch_size
         self.sequence_length = vit.seq_length
         self.mask_token = nn.Parameter(torch.zeros(1, 1, decoder_dim))
         self.backbone = masked_autoencoder.MAEBackbone.from_vit(vit)
         self.decoder = masked_autoencoder.MAEDecoder(
             seq_length=vit.seq_length,
-            num_layers=4,
-            num_heads=16,
+            num_layers=decoder_layers,
+            num_heads=decoder_heads,
             embed_input_dim=vit.hidden_dim,
             hidden_dim=decoder_dim,
             mlp_dim=decoder_dim * 4,
@@ -68,6 +70,7 @@ class MAE(pl.LightningModule):
         # must adjust idx_mask for missing class token
         target = utils.get_at_index(patches, idx_mask - 1)
 
+        print(x_pred, target)
         loss = self.criterion(x_pred, target)
         self.log('train_loss', loss)
         return loss
@@ -94,5 +97,5 @@ class MAE(pl.LightningModule):
         return loss
 
     def configure_optimizers(self):
-        optim = torch.optim.AdamW(self.parameters(), lr=1.5e-3)
+        optim = torch.optim.Adam(self.parameters(), lr=self.learning_rate)
         return optim

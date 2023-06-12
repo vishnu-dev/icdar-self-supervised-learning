@@ -1,0 +1,4 @@
+icdar_root_dir: /home/woody/iwfa/iwfa028h/dev/faps/data/ICDAR2017_CLaMM_Training
+icdar_label_path: /home/woody/iwfa/iwfa028h/dev/faps/data/ICDAR2017_CLaMM_Training/@ICDAR2017_CLaMM_Training.csv
+
+output_dir: /home/woody/iwfa/iwfa028h/dev/faps/data/trained_models/

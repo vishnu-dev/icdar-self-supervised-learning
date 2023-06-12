@@ -2,7 +2,6 @@ import random
 import numpy as np
 import torchvision.transforms as T
 import torch
-import cv2 as cv
 from kornia.morphology import erosion, dilation
 
 
@@ -76,6 +75,17 @@ class PositivePairTransform:
     
     def __str__(self):
         return f"{type(self.left).__name__} + {type(self.right).__name__}"
+
+
+class NegativePairTransform:
+    
+    def __init__(self, transforms=None):
+        self.transforms = transforms
+    
+    def __call__(self, tensor):
+        left = self.transforms(tensor)
+        right = self.transforms(tensor)
+        return left, right, right
 
 
 if __name__ == '__main__':

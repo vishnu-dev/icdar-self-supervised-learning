@@ -9,27 +9,23 @@ import torchvision.transforms as T
 class ICDARDataset(Dataset):
 
     def __init__(self, csv_filepath, root_dir, transforms=None, convert_rgb=True, mask_generator=None):
-        self.root_dir = root_dir
         self.transforms = transforms
-        self.data = pd.read_csv(csv_filepath, sep=';')
         self.convert_rgb = convert_rgb
         self.mask_generator = mask_generator
+        
+        df = pd.read_csv(csv_filepath, sep=';')
+        df['img_path'] = root_dir + os.sep + df['FILENAME']
+        self.data = df.loc[df.img_path.map(os.path.exists)].reset_index(drop=True)
 
     def __len__(self):
         return len(self.data)
 
     def __getitem__(self, idx):
 
-        if torch.is_tensor(idx):
-            idx = idx.tolist()
-
-        img_path = os.path.join(self.root_dir, self.data.loc[idx, 'FILENAME'])
+        img_path = self.data.loc[idx, 'img_path']
         
-        try:
-            image = Image.open(img_path)
-        except Exception as ex:
-            return None
-
+        image = Image.open(img_path)
+        
         if self.convert_rgb:
             image = image.convert('RGB')
         

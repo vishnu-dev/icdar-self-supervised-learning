@@ -1,0 +1,59 @@
+paths:
+  icdar_root_dir: /home/woody/iwfa/iwfa028h/dev/faps/data/ICDAR2017_CLaMM_Training
+  icdar_label_path: /home/woody/iwfa/iwfa028h/dev/faps/data/ICDAR2017_CLaMM_Training/@ICDAR2017_CLaMM_Training.csv
+  output_dir: /home/woody/iwfa/iwfa028h/dev/faps/data/trained_models/
+dataset:
+  name: icdar
+  root_dir: ${paths.icdar_root_dir}
+  label_path: ${paths.icdar_label_path}
+  batch_size: 64
+  train_val_test_ratio:
+  - 0.7
+  - 0.1
+  - 0.2
+  num_workers: 8
+  pin_memory: true
+  mean:
+  - 0.7013
+  - 0.7013
+  - 0.7013
+  std:
+  - 0.251
+  - 0.251
+  - 0.251
+model:
+  name: simclr
+  learning_rate: 0.0015
+  temperature: 0.35
+  gpus: -1
+  transforms:
+    jitter:
+      strength: 0.2
+    gaussian_blur:
+      kernel_size: 41
+      prob: 0.5
+    random_rotation:
+      min_angle: -25
+      max_angle: 25
+      prob: 0.5
+    random_erasing:
+      prob: 0.5
+    dilation:
+      kernel_size: 1
+      prob: 0.5
+mode:
+  name: train
+trainer:
+  default_root_dir: ${paths.output_dir}
+  max_epochs: 100
+  accelerator: gpu
+  devices: -1
+  precision: 16
+  log_every_n_steps: 10
+paths.icdar_root_dir: /dev/shm/ICDAR2017_CLaMM_Training/
+paths.icdar_label_path: /dev/shm/ICDAR2017_CLaMM_Training/@ICDAR2017_CLaMM_Training.csv
+trainer.max_epochs: 500
+dataset.batch_size: 64
+model.name: simclr
+model.learning_rate: 0.0015
+model.temperature: 0.35

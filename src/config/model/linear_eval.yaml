@@ -1,0 +1,9 @@
+name: linear_eval
+
+learning_rate: 0.01
+
+gpus: -1
+
+base_model:
+  name: simclr
+  checkpoint: 600299

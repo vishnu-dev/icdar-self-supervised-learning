@@ -5,7 +5,7 @@ from pipeline.callback_factory import callback_factory
 
 class LightningPipeline:
     def __init__(
-        self, root_dir, model_class, mode, data_loader, max_epochs, batch_size
+        self, root_dir, model_class, mode, data_loader, batch_size, trainer_cfg
     ):
         pl.seed_everything(42)
 
@@ -13,8 +13,8 @@ class LightningPipeline:
         self.mode = mode
         self.data_loader = data_loader
         self.root_dir = root_dir
-        self.max_epochs = max_epochs
         self.batch_size = batch_size
+        self.trainer_cfg = trainer_cfg
 
         self.trainer = None
 
@@ -22,22 +22,17 @@ class LightningPipeline:
         return self.model_class
 
     def init_trainer(self, model):
-        model_save_dir = os.path.abspath(
-                os.path.join(
-                    self.root_dir, os.pardir, "trained_models", model.__class__.__name__
-                )
-            )
-        print('Saving models to: ', model_save_dir)
-        print('Callbacks: ', callback_factory(model.__class__.__name__))
         self.trainer = pl.Trainer(
-            default_root_dir=model_save_dir,
-            accelerator="gpu",
-            devices=-1,
-            max_epochs=self.max_epochs,
+            default_root_dir=self.root_dir,
+            accelerator=self.trainer_cfg.accelerator,
+            devices=self.trainer_cfg.devices,
+            max_epochs=self.trainer_cfg.max_epochs,
             callbacks=callback_factory(model.__class__.__name__),
             enable_progress_bar=True,
-            precision=16,
-            log_every_n_steps=20
+            precision=self.trainer_cfg.precision,
+            log_every_n_steps=self.trainer_cfg.log_every_n_steps,
+            profiler='simple',
+            benchmark=True
         )
 
     def run(self):

@@ -166,4 +166,7 @@ Data/
 test.png
 
 # SLURM logs
-*.out
+scripts/.logs/
+
+# Sqlite database
+*.db

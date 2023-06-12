@@ -1,0 +1,28 @@
+dataset:
+  name: icdar
+  root_dir: /home/woody/iwfa/iwfa028h/dev/faps/data/ICDAR2017_CLaMM_Training
+  label_path: /home/woody/iwfa/iwfa028h/dev/faps/data/ICDAR2017_CLaMM_Training/@ICDAR2017_CLaMM_Training.csv
+  mean:
+  - 0.7013
+  - 0.7013
+  - 0.7013
+  std:
+  - 0.251
+  - 0.251
+  - 0.251
+model:
+  name: simclr
+  train:
+    batch_size: 64
+    max_epochs: 100
+    gpus: -1
+    num_workers: 8
+    learning_rate: 0.0015
+    temperature: 0.35
+  test:
+    batch_size: 64
+    max_epochs: 1
+    gpus: -1
+    num_workers: 8
+mode:
+  name: train

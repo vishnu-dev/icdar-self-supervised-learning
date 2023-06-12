@@ -1,0 +1,25 @@
+dataset:
+  name: icdar
+  root_dir: ${paths.icdar_root_dir}
+  label_path: ${paths.icdar_label_path}
+  batch_size: 64
+  train_val_test_split:
+  - 0.7
+  - 0.1
+  - 0.2
+  num_workers: 8
+  pin_memory: true
+  mean:
+  - 0.7013
+  - 0.7013
+  - 0.7013
+  std:
+  - 0.251
+  - 0.251
+  - 0.251
+model:
+  name: simclr
+  learning_rate: 0.0015
+  temperature: 0.35
+mode:
+  name: train

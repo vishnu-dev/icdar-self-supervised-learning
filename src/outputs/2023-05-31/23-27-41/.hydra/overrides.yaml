@@ -1,0 +1,5 @@
+- trainer.max_epochs=500
+- dataset.batch_size=64
+- model.name=simclr
+- model.learning_rate=0.0015
+- model.temperature=0.35

@@ -1,0 +1,18 @@
+name: icdar
+root_dir: ${paths.icdar_root_dir}
+label_path: ${paths.icdar_label_path}
+batch_size: 128
+train_val_test_ratio:
+  - 0.7
+  - 0.1
+  - 0.2
+num_workers: 8
+pin_memory: True
+mean:
+  - 0.7013
+  - 0.7013
+  - 0.7013
+std: 
+  - 0.2510
+  - 0.2510
+  - 0.2510
