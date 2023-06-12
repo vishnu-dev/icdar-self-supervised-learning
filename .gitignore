@@ -170,3 +170,5 @@ scripts/.logs/
 
 # Sqlite database
 *.db
+
+outputs/
