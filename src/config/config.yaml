@@ -1,6 +1,6 @@
 defaults:
-  - paths: 'default'
-  - dataset: 'icdar'
-  - model: 'simclr'
-  - mode: 'train'
-  - trainer: 'default'
+  - paths: default
+  - dataset: icdar
+  - model: simclr
+  - mode: train
+  - trainer: default

@@ -2,7 +2,6 @@ from pl_bolts.models.self_supervised import SimCLR, BYOL
 from models.mae.model import MAE
 from models.downstream.linear_eval import DownstreamClassifier
 
-# from models.mae.model import MAE
 # from models.byol.model import BYOL
 
 

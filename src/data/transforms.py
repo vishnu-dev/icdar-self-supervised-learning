@@ -9,7 +9,7 @@ import torchvision.transforms as T
 def transform_factory(model_name, mode, config, data_mean, data_std):
 
     if config is not None:
-        augmentations = T.Compose([hydra.utils.instantiate(item) for item in config.get('train')])
+        augmentations = T.Compose(config.get('train'))
             
     transforms_dict = {
         'simclr': {

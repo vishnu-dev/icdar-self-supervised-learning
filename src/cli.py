@@ -11,8 +11,11 @@ from pipeline.lightning import LightningPipeline
 
 @hydra.main(version_base=None, config_path='config', config_name='config')
 def execute(cfg: DictConfig):
+
     print(OmegaConf.to_yaml(cfg))
     
+    cfg = hydra.utils.instantiate(cfg)
+        
     transforms = transform_factory(
         cfg.model.name,
         cfg.mode.name,
@@ -20,10 +23,8 @@ def execute(cfg: DictConfig):
         cfg.dataset.mean,
         cfg.dataset.std
     )
-    print('Transforms: ', transforms)
     
     collate_fn = collate_factory(cfg.model.name)
-    print('Collate: ', collate_fn)
     
     dataloaders = data_factory(
         cfg.dataset.name,
@@ -42,11 +43,11 @@ def execute(cfg: DictConfig):
     
     model_class = model_factory(
         cfg.model.name,
-        gpus=cfg.model.gpus,
         num_samples=len(dataloaders.get(cfg.mode.name).dataset),
         max_epochs=cfg.trainer.max_epochs,
         batch_size=cfg.dataset.batch_size,
         dataset=cfg.dataset.name,
+        learning_rate=cfg.model.learning_rate,
         **cfg.model.params
     )
     print('Model class: ', model_class.__class__.__name__)

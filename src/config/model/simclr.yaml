@@ -1,10 +1,10 @@
 name: simclr
 
 learning_rate: 0.0015
-gpus: -1
 
 params:
   temperature: 0.35
+  gpus: -1
 
 augmentations:
 
