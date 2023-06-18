@@ -1,5 +1,0 @@
-base_model_name: SimCLR
-base_model_version: '598468'
-features: 2048
-num_classes: 13
-learning_rate: 0.01

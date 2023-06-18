@@ -172,3 +172,5 @@ scripts/.logs/
 *.db
 
 outputs/
+
+notebooks/lighning_logs/
