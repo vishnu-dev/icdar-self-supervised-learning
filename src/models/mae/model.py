@@ -1,16 +1,12 @@
-# Copyright (c) Meta Platforms, Inc. and affiliates.
-# All rights reserved.
-
-# This source code is licensed under the license found in the
-# LICENSE file in the root directory of this source tree.
 # --------------------------------------------------------
 # References:
+# Masked Autoencoder Pytorch: https://github.com/facebookresearch/mae
 # timm: https://github.com/rwightman/pytorch-image-models/tree/master/timm
 # DeiT: https://github.com/facebookresearch/deit
 # --------------------------------------------------------
 
-from functools import partial
 from typing import Any
+import sys
 import math
 
 import torch
@@ -18,13 +14,10 @@ import torch.nn as nn
 import pytorch_lightning as pl
 
 from timm.models.vision_transformer import PatchEmbed, Block
-
-from models.mae.pos_embed import get_2d_sincos_pos_embed
-
-import sys
+from src.models.mae.pos_embed import get_2d_sincos_pos_embed
 
 
-class MaskedAutoencoderViT(nn.Module):
+class MAE(pl.LightningModule):
     """ Masked Autoencoder with VisionTransformer backbone
     """
     def __init__(self, img_size=224, patch_size=16, in_chans=3,
@@ -64,8 +57,11 @@ class MaskedAutoencoderViT(nn.Module):
         # --------------------------------------------------------------------------
 
         self.norm_pix_loss = norm_pix_loss
+        
+        self.kwargs = kwargs
 
         self.initialize_weights()
+        self.save_hyperparameters()
 
     def initialize_weights(self):
         # initialization
@@ -224,34 +220,29 @@ class MaskedAutoencoderViT(nn.Module):
         loss = self.forward_loss(imgs, pred, mask)
         return loss, pred, mask
 
-
-class MAE(pl.LightningModule):
-    
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__()
-        self.kwargs = kwargs
-        self.model = MaskedAutoencoderViT(*args, **kwargs)
-        self.save_hyperparameters()
-    
     def training_step(self, batch, batch_idx):
 
         (imgs,), _ = batch
-        loss, _, _ = self.model(imgs, mask_ratio=self.kwargs['mask_ratio'])
+        loss, _, _ = self.forward(imgs, mask_ratio=self.kwargs['mask_ratio'])
         loss_value = loss.item()
 
         if not math.isfinite(loss_value):
             print("Loss is {}, stopping training".format(loss_value))
             sys.exit(1)
+            
+        for parameters in self.parameters():
+            if parameters.grad is not None:
+                grad_norm = torch.norm(parameters.grad)
+                self.logger.experiment.add_scalar('grad_norm', grad_norm, self.global_step)
 
         self.log('train_loss', loss)
         self.log('lr', self.trainer.optimizers[0].param_groups[0]['lr'])
 
-        return {'loss': loss}
+        return loss
     
     def validation_step(self, batch, batch_idx):
-        
         (imgs,), _ = batch
-        loss, _, _ = self.model(imgs, mask_ratio=self.kwargs['mask_ratio'])
+        loss, _, _ = self.forward(imgs, mask_ratio=self.kwargs['mask_ratio'])
         loss_value = loss.item()
 
         if not math.isfinite(loss_value):
@@ -259,38 +250,14 @@ class MAE(pl.LightningModule):
             sys.exit(1)
 
         self.log('val_loss', loss)
-        return {'loss': loss}
-    
+        return loss
+
     def configure_optimizers(self) -> Any:
-        optimizer = torch.optim.AdamW(self.model.parameters(), lr=self.kwargs['learning_rate'], betas=(0.9, 0.95))
-        lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=1)
-        return [optimizer], [lr_scheduler]
+        optimizer = torch.optim.AdamW(
+            self.parameters(),
+            lr=self.kwargs['learning_rate'],
+            betas=(0.9, 0.95),
+            weight_decay=0.05
+        )
+        return [optimizer]
 
-def mae_vit_base_patch16_dec512d8b(**kwargs):
-    model = MaskedAutoencoderViT(
-        patch_size=16, embed_dim=768, depth=12, num_heads=12,
-        decoder_embed_dim=512, decoder_depth=8, decoder_num_heads=16,
-        mlp_ratio=4, norm_layer=partial(nn.LayerNorm, eps=1e-6), **kwargs)
-    return model
-
-
-def mae_vit_large_patch16_dec512d8b(**kwargs):
-    model = MaskedAutoencoderViT(
-        patch_size=16, embed_dim=1024, depth=24, num_heads=16,
-        decoder_embed_dim=512, decoder_depth=8, decoder_num_heads=16,
-        mlp_ratio=4, norm_layer=partial(nn.LayerNorm, eps=1e-6), **kwargs)
-    return model
-
-
-def mae_vit_huge_patch14_dec512d8b(**kwargs):
-    model = MaskedAutoencoderViT(
-        patch_size=14, embed_dim=1280, depth=32, num_heads=16,
-        decoder_embed_dim=512, decoder_depth=8, decoder_num_heads=16,
-        mlp_ratio=4, norm_layer=partial(nn.LayerNorm, eps=1e-6), **kwargs)
-    return model
-
-
-# set recommended archs
-mae_vit_base_patch16 = mae_vit_base_patch16_dec512d8b  # decoder: 512 dim, 8 blocks
-mae_vit_large_patch16 = mae_vit_large_patch16_dec512d8b  # decoder: 512 dim, 8 blocks
-mae_vit_huge_patch14 = mae_vit_huge_patch14_dec512d8b  # decoder: 512 dim, 8 blocks

@@ -2,8 +2,8 @@ import torch
 from torch.nn import functional as F
 import pytorch_lightning as pl
 
-from models.simclr.encoder import ResNet50Encoder
-from models.simclr.head import ProjectionHead
+from src.models.simclr.encoder import ResNet50Encoder
+from src.models.simclr.head import ProjectionHead
 
 
 class SimCLR(pl.LightningModule):

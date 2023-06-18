@@ -1,9 +1,9 @@
 name: simclr
+classname: SimCLR
 
 learning_rate: 0.0015
 
 params:
-  temperature: 0.35
   gpus: -1
 
 augmentations:
@@ -17,6 +17,16 @@ augmentations:
     # Horizontal flip
     - _target_: torchvision.transforms.RandomHorizontalFlip
       p: 0.5
+    
+    # Random Color Jitter
+    - _target_: torchvision.transforms.RandomApply
+      transforms:
+        - _target_: torchvision.transforms.ColorJitter
+          brightness: 0.8
+          contrast: 0.8
+          saturation: 0.8
+          hue: 0.2
+      p: 0.8
     
     # Random gaussian blur
     - _target_: torchvision.transforms.RandomApply
@@ -54,6 +64,23 @@ augmentations:
         - _target_: data.augment.Erosion
           kernel_size: 3
       p: 0.5
+
+    # Normalization
+    - _target_: torchvision.transforms.Normalize
+      mean: ${dataset.mean}
+      std: ${dataset.std}
+
+  online:
+
+    - _target_: torchvision.transforms.RandomResizedCrop
+      size: 224
+    
+    # Horizontal flip
+    - _target_: torchvision.transforms.RandomHorizontalFlip
+      p: 0.5
+    
+    # Convert to tensor
+    - _target_: torchvision.transforms.ToTensor
 
     # Normalization
     - _target_: torchvision.transforms.Normalize

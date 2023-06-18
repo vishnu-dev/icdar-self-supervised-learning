@@ -1,17 +1,20 @@
 # @package _global_
+defaults:
+  - override /paths: default
+  - override /dataset: icdar
+  - override /model: byol
+  - override /mode: train
+  - override /trainer: default
 
 paths:
   icdar_root_dir: /home/woody/iwfa/iwfa028h/dev/faps/data/ICDAR2017_CLaMM_Large
   icdar_label_path: /home/woody/iwfa/iwfa028h/dev/faps/data/ICDAR2017_CLaMM_Large/@ICDAR2017_CLaMM_Large.csv
 
 trainer:
-  max_epochs: 200
+  max_epochs: 300
+  accelerator: gpu
+  strategy: ddp
   train_val_test_split: [0.7, 0.1, 0.2]
   
 dataset:
-  batch_size: 128
-
-model:
-  name: simclr
-  learning_rate: 0.015
-  temperature: 0.35
+  batch_size: 64

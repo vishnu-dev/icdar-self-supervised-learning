@@ -1,5 +1,5 @@
 from torch.utils.data import DataLoader, random_split
-from data.dataset import ICDARDataset
+from src.data.dataset import ICDARDataset
 from lightly.data import LightlyDataset
 from glob import glob
 import os

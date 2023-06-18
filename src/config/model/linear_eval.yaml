@@ -1,9 +1,11 @@
-name: linear_eval
+name: downstream_linear
 
-learning_rate: 0.01
-
-gpus: -1
+learning_rate: 0.0003
 
 base_model:
   name: simclr
-  checkpoint: 600299
+  classname: SimCLR
+  checkpoint:
+
+params:
+  gpus: -1
