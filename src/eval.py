@@ -1,6 +1,6 @@
 import os
-import click
 import hydra
+from glob import glob
 from data.data_factory import data_factory
 from data.transforms import transform_factory
 from data.collate import collate_factory
@@ -33,12 +33,15 @@ def execute(cfg: DictConfig):
     for name, dataloader in dataloaders.items():
         print(f'{name} dataloader: ', len(dataloader.dataset))
 
-    base_checkpoint = os.path.join(
+    base_checkpoint_path = os.path.join(
         cfg.trainer.default_root_dir,
-        cfg.model.base_model.name,
+        cfg.model.base_model.classname,
+        'lightning_logs',
+        f'version_{cfg.model.base_model.checkpoint}',
         'checkpoints',
-        cfg.model.base_model.checkpoint
+        '*.ckpt'
     )
+    base_checkpoint = sorted(glob(base_checkpoint_path), reverse=True)[-1]
 
     base_model = backbone_factory(
         cfg.model.base_model.name,
@@ -51,7 +54,7 @@ def execute(cfg: DictConfig):
 
     model_class = model_factory(
         cfg.model.name,
-        gpus=cfg.model.gpus,
+        base_model=base_model,
         num_samples=len(dataloaders.get(cfg.mode.name).dataset),
         max_epochs=cfg.trainer.max_epochs,
         batch_size=cfg.dataset.batch_size,

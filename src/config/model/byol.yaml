@@ -1,1 +1,19 @@
 name: byol
+
+learning_rate: 0.3
+
+params: {}
+
+augmentations:
+  train:
+    # Random resized crop
+    - _target_: torchvision.transforms.RandomResizedCrop
+      size: 224
+
+    # Convert to tensor
+    - _target_: torchvision.transforms.ToTensor
+
+    # Normalization
+    - _target_: torchvision.transforms.Normalize
+      mean: ${dataset.mean}
+      std: ${dataset.std}

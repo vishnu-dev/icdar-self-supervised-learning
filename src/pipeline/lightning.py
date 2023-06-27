@@ -1,13 +1,13 @@
 import os
 import pytorch_lightning as pl
-from pipeline.callback_factory import callback_factory
+from src.pipeline.callback_factory import callback_factory
 
 
 class LightningPipeline:
     def __init__(
         self, root_dir, model_class, mode, data_loader, batch_size, trainer_cfg
     ):
-        pl.seed_everything(42)
+        # pl.seed_everything(42, workers=True)
 
         self.model_class = model_class
         self.mode = mode
@@ -25,6 +25,7 @@ class LightningPipeline:
         self.trainer = pl.Trainer(
             default_root_dir=self.root_dir,
             accelerator=self.trainer_cfg.accelerator,
+            strategy=self.trainer_cfg.strategy or None,
             devices=self.trainer_cfg.devices,
             max_epochs=self.trainer_cfg.max_epochs,
             callbacks=callback_factory(model.__class__.__name__),
@@ -32,7 +33,8 @@ class LightningPipeline:
             precision=self.trainer_cfg.precision,
             log_every_n_steps=self.trainer_cfg.log_every_n_steps,
             profiler='simple',
-            benchmark=True
+            # benchmark=True,
+            # deterministic=True
         )
 
     def run(self):

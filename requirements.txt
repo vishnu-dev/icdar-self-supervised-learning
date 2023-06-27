@@ -1,6 +1,2 @@
-lightning-bolts==0.6.0
-pandas==1.5.3
-Pillow==9.4.0
-torchvision==0.14.1
-matplotlib==3.6.3
-scikit-learn==1.2.0
+# local package
+-e .

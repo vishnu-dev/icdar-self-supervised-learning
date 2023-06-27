@@ -1,5 +1,5 @@
 from pl_bolts.models.self_supervised import SimCLR, BYOL
-from models.mae.model import MAE
+from src.models.mae.model import MAE
 
 # from models.mae.model import MAE
 # from models.byol.model import BYOL

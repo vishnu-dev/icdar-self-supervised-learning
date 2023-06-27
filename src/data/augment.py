@@ -1,5 +1,3 @@
-import random
-import numpy as np
 import torchvision.transforms as T
 import torch
 from kornia.morphology import erosion, dilation
@@ -43,61 +41,14 @@ class Dilation(object):
         return batch_tensor[0, :, :, :]
 
 
-class PositivePairTransform:
-    
-    def __init__(self, transforms=None):
-        self.transforms = (
-            transforms if transforms is not None else
-            [
-                GaussianNoise(0, random.uniform(0.1, 0.3)),
-                T.GaussianBlur(kernel_size=(5, 5)),
-                T.RandomRotation(degrees=np.random.randint(0, 45)),
-                T.RandomErasing(p=1),
-                Dilation(5),
-            ]
-        )
-        self.left = T.Compose([
-            T.RandomResizedCrop((254, 254)),
-            *random.sample(self.transforms, 2)
-        ])
-        self.right = T.Compose([
-            T.RandomResizedCrop((254, 254)),
-            *random.sample(self.transforms, 2)
-        ])
-
-    def __call__(self, tensor):
-        left = self.left(tensor)
-        right = self.right(tensor)
-        return left, right, None
-    
-    def __repr__(self):
-        return f"{type(self.left).__name__} + {type(self.right).__name__}"
-    
-    def __str__(self):
-        return f"{type(self.left).__name__} + {type(self.right).__name__}"
-
-
 class NegativePairTransform:
     
-    def __init__(self, transforms=None):
+    def __init__(self, transforms=None, online_transforms=None):
         self.transforms = transforms
+        self.online_transform = online_transforms
     
     def __call__(self, tensor):
         left = self.transforms(tensor)
         right = self.transforms(tensor)
-        return left, right, right
-
-
-if __name__ == '__main__':
-    from PIL import Image
-    import matplotlib.pyplot as plt
-    
-    image_path = "/Users/vishnudev/shared/FAU Study/Project/PR " \
-                 "Project/Data/ICDAR2017_CLaMM_task1_task3/315556101_MS0364_0077.tif"
-    im = Image.open(image_path)
-    image_tensor = T.ToTensor()(im)
-    pp = PositivePairTransform()
-    im = pp(image_tensor)
-    im = T.RandomResizedCrop((256, 256))(im)
-    plt.imshow(im[0, :].numpy(), cmap='gray')
-    plt.show()
+        online = self.online_transform(tensor)
+        return left, right, online

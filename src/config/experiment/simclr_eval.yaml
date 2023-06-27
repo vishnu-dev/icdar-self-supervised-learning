@@ -2,7 +2,7 @@
 defaults:
   - override /paths: default
   - override /dataset: icdar
-  - override /model: mae
+  - override /model: linear_eval
   - override /mode: train
   - override /trainer: default
 
@@ -11,14 +11,14 @@ paths:
   icdar_label_path: /home/woody/iwfa/iwfa028h/dev/faps/data/ICDAR2017_CLaMM_Large/@ICDAR2017_CLaMM_Large.csv
 
 trainer:
-  strategy:
   max_epochs: 100
+  accelerator: gpu
+  strategy:
   train_val_test_split: [0.7, 0.1, 0.2]
-  
+
 dataset:
-  batch_size: 64
+  batch_size: 256
 
 model:
-  name: mae
-  learning_rate: 0.0003
-  params: ${model.vit_huge}
+  base_model:
+    checkpoint: 605026

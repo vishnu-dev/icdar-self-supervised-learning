@@ -2,11 +2,11 @@ import os
 from omegaconf import DictConfig, OmegaConf
 import hydra
     
-from data.data_factory import data_factory
-from data.transforms import transform_factory
-from data.collate import collate_factory
-from models.model_factory import model_factory
-from pipeline.lightning import LightningPipeline
+from src.data.data_factory import data_factory
+from src.data.transforms import transform_factory
+from src.data.collate import collate_factory
+from src.models.model_factory import model_factory
+from src.pipeline.lightning import LightningPipeline
 
 
 @hydra.main(version_base=None, config_path='config', config_name='config')
@@ -19,9 +19,7 @@ def execute(cfg: DictConfig):
     transforms = transform_factory(
         cfg.model.name,
         cfg.mode.name,
-        cfg.model.augmentations,
-        cfg.dataset.mean,
-        cfg.dataset.std
+        cfg.model.augmentations
     )
     
     collate_fn = collate_factory(cfg.model.name)
