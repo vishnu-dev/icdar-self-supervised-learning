@@ -16,8 +16,9 @@ trainer:
   train_val_test_split: [0.7, 0.1, 0.2]
   
 dataset:
-  batch_size: 32
+  batch_size: 64
 
 model:
   name: mae
   learning_rate: 0.0003
+  params: ${model.vit_huge}

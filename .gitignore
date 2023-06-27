@@ -173,4 +173,5 @@ scripts/.logs/
 
 outputs/
 
-notebooks/lighning_logs/
+notebooks/lightning_logs/
+checkpoints/

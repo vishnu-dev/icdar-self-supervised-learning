@@ -222,7 +222,7 @@ class MAE(pl.LightningModule):
 
     def training_step(self, batch, batch_idx):
 
-        (imgs,), _ = batch
+        imgs, _ = batch
         loss, _, _ = self.forward(imgs, mask_ratio=self.kwargs['mask_ratio'])
         loss_value = loss.item()
 
@@ -241,7 +241,7 @@ class MAE(pl.LightningModule):
         return loss
     
     def validation_step(self, batch, batch_idx):
-        (imgs,), _ = batch
+        imgs, _ = batch
         loss, _, _ = self.forward(imgs, mask_ratio=self.kwargs['mask_ratio'])
         loss_value = loss.item()
 

@@ -22,7 +22,7 @@ def transform_factory(model_name, mode, config=None):
         },
         'mae': {
             # Defined scale as in the paper
-            'train': MAETransform(min_scale=0.2, normalize=None),
+            'train': augmentations,
             'val': Compose([ToTensor()]),
             'test': Compose([ToTensor()])
         },

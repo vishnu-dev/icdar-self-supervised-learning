@@ -33,8 +33,8 @@ class LightningPipeline:
             precision=self.trainer_cfg.precision,
             log_every_n_steps=self.trainer_cfg.log_every_n_steps,
             profiler='simple',
-            benchmark=True,
-            deterministic=True
+            # benchmark=True,
+            # deterministic=True
         )
 
     def run(self):
