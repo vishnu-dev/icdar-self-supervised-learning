@@ -1,7 +1,8 @@
 import os
 from omegaconf import DictConfig, OmegaConf
 import hydra
-    
+import json
+
 from src.data.data_factory import data_factory
 from src.data.transforms import transform_factory
 from src.data.collate import collate_factory
@@ -11,9 +12,8 @@ from src.pipeline.lightning import LightningPipeline
 
 @hydra.main(version_base=None, config_path='config', config_name='config')
 def execute(cfg: DictConfig):
-
-    print(OmegaConf.to_yaml(cfg))
     
+    print(OmegaConf.to_yaml(cfg))
     cfg = hydra.utils.instantiate(cfg)
         
     transforms = transform_factory(

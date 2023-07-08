@@ -13,14 +13,4 @@ conda activate lme
 
 cd ~/dev/pr/icdar-self-supervised-learning/src/
 
-srun python cli.py \
---root-dir /home/woody/iwfa/iwfa028h/dev/faps/data/ICDAR2017_CLaMM_Training \
---label-path /home/woody/iwfa/iwfa028h/dev/faps/data/ICDAR2017_CLaMM_Training/@ICDAR2017_CLaMM_Training.csv \
---max-epochs 200 \
---batch-size 64 \
---model-name byol \
---model-params learning_rate 0.03 \
---model-params num_classes 12 \
---model-params weight_decay 0.0004 \
---model-params projector_hidden_dim 512 \
---model-params projector_out_dim 128
+srun python train.py +experiment=byol_paper

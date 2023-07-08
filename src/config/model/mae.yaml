@@ -1,6 +1,7 @@
 name: mae
 
-learning_rate: 0.015
+learning_rate: 0.0003
+image_size: 224
 
 augmentations:
 
@@ -8,7 +9,7 @@ augmentations:
     
     # Random resized crop
     - _target_: torchvision.transforms.RandomResizedCrop
-      size: 224
+      size: ${model.image_size}
     
     # Horizontal flip
     - _target_: torchvision.transforms.RandomHorizontalFlip
@@ -22,85 +23,8 @@ augmentations:
     #   mean: ${dataset.mean}
     #   std: ${dataset.std}
 
-params: ${model.vit_large}
-
-vit_tiny:
-  mask_ratio: 0.75
-  norm_pix_loss: false
-  patch_size: 16
-  dim: 192
-  depth: 12
-  num_heads: 4
-  decoder_embed_dim: 512
-  decoder_depth: 8
-  decoder_num_heads: 16
-  mlp_ratio: 4
-  norm_layer:
-    _partial_: true
-    _target_: torch.nn.LayerNorm
-    eps: 1e-6
-
-vit_small:
-  mask_ratio: 0.75
-  norm_pix_loss: false
-  patch_size: 16
-  dim: 384
-  depth: 12
-  num_heads: 8
-  decoder_embed_dim: 512
-  decoder_depth: 8
-  decoder_num_heads: 16
-  mlp_ratio: 4
-  norm_layer:
-    _partial_: true
-    _target_: torch.nn.LayerNorm
-    eps: 1e-6
-
-
-vit_base:
-  mask_ratio: 0.75
-  norm_pix_loss: false
-  patch_size: 16
-  dim: 768
-  depth: 12
-  num_heads: 12
-  decoder_embed_dim: 512
-  decoder_depth: 8
-  decoder_num_heads: 16
-  mlp_ratio: 4
-  norm_layer:
-    _partial_: true
-    _target_: torch.nn.LayerNorm
-    eps: 1e-6
-
-vit_large:
-  mask_ratio: 0.75
-  norm_pix_loss: false
-  patch_size: 16
-  dim: 1024
-  depth: 24
-  num_heads: 16
-  decoder_embed_dim: 512
-  decoder_depth: 8
-  decoder_num_heads: 16
-  mlp_ratio: 4
-  norm_layer:
-    _partial_: true
-    _target_: torch.nn.LayerNorm
-    eps: 1e-6
-  
-vit_huge:
-  mask_ratio: 0.75
+params:
+  img_size: ${model.image_size}
   norm_pix_loss: true
-  patch_size: 14
-  dim: 1280
-  depth: 32
-  num_heads: 16
-  decoder_embed_dim: 512
-  decoder_depth: 8
-  decoder_num_heads: 16
-  mlp_ratio: 4
-  norm_layer:
-    _partial_: true
-    _target_: torch.nn.LayerNorm
-    eps: 1e-6
+  warmup_epochs: 10
+  min_learning_rate: 0

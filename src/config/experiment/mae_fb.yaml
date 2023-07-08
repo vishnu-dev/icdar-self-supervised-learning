@@ -1,5 +1,6 @@
 # @package _global_
 defaults:
+  - /model/vision_transformers/tiny@model.params
   - override /paths: default
   - override /dataset: icdar
   - override /model: mae
@@ -14,11 +15,12 @@ trainer:
   strategy:
   max_epochs: 100
   train_val_test_split: [0.7, 0.1, 0.2]
+  accumulate_grad_batches: 8
   
 dataset:
-  batch_size: 64
+  batch_size: 32
 
 model:
   name: mae
-  learning_rate: 0.0003
-  params: ${model.vit_huge}
+  image_size: 384
+  learning_rate: 0.01

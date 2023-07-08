@@ -27,7 +27,7 @@ def transform_factory(model_name, mode, config=None):
             'test': Compose([ToTensor()])
         },
         'byol': {
-            'train': NegativePairTransform(transforms=augmentations),
+            'train': NegativePairTransform(transforms=augmentations, online_transforms=online_augmentations),
             'val': SimCLREvalDataTransform(),
             'test': SimCLREvalDataTransform()
         },

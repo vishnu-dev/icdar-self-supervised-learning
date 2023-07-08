@@ -15,6 +15,7 @@ import pytorch_lightning as pl
 
 from timm.models.vision_transformer import PatchEmbed, Block
 from src.models.mae.pos_embed import get_2d_sincos_pos_embed
+from src.models.mae.lr_sched import CustomScheduler
 
 
 class MAE(pl.LightningModule):
@@ -259,5 +260,12 @@ class MAE(pl.LightningModule):
             betas=(0.9, 0.95),
             weight_decay=0.05
         )
-        return [optimizer]
+        scheduler = CustomScheduler(
+            optimizer,
+            self.kwargs['warmup_epochs'],
+            self.kwargs['max_epochs'],
+            self.kwargs['min_learning_rate'],
+            self.kwargs['learning_rate'],
+        )
+        return [optimizer], [scheduler]
 
