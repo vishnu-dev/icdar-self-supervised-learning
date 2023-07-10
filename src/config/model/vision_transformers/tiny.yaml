@@ -1,11 +1,11 @@
 name: tiny
 mask_ratio: 0.75
 patch_size: 16
-dim: 192
-depth: 6
-num_heads: 4
+dim: 128
+depth: 4
+num_heads: 12
 decoder_embed_dim: 256
-decoder_depth: 4
+decoder_depth: 1
 decoder_num_heads: 4
 mlp_ratio: 4
 norm_layer:

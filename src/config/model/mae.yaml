@@ -10,6 +10,10 @@ augmentations:
     # Random resized crop
     - _target_: torchvision.transforms.RandomResizedCrop
       size: ${model.image_size}
+      scale:
+        - 0.2
+        - 1.0
+      interpolation: 3
     
     # Horizontal flip
     - _target_: torchvision.transforms.RandomHorizontalFlip

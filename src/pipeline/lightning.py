@@ -32,7 +32,7 @@ class LightningPipeline:
             enable_progress_bar=True,
             precision=self.trainer_cfg.precision,
             log_every_n_steps=self.trainer_cfg.log_every_n_steps,
-            accumulate_grad_batches=self.trainer_cfg.accumulate_grad_batches or 1,
+            accumulate_grad_batches=self.trainer_cfg.get('accumulate_grad_batches', 1),
             profiler='simple',
             # benchmark=True,
             # deterministic=True

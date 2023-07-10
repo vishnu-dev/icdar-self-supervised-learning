@@ -15,6 +15,56 @@ trainer:
   accelerator: gpu
   strategy:
   train_val_test_split: [0.7, 0.1, 0.2]
+  accumulate_grad_batches: 1
   
 dataset:
   batch_size: 64
+
+model:
+  learning_rate: 1.5e-4
+  augmentations:
+    train:
+
+      # Random resized crop
+      - _target_: torchvision.transforms.RandomResizedCrop
+        size: 224
+        scale:
+          - 0.2
+          - 1.0
+        interpolation: 3
+      
+      # Horizontal flip
+      - _target_: torchvision.transforms.RandomHorizontalFlip
+        p: 0.5
+      
+      # Random Color Jitter
+      - _target_: torchvision.transforms.RandomApply
+        transforms:
+          - _target_: torchvision.transforms.ColorJitter
+            brightness: 0.8
+            contrast: 0.8
+            saturation: 0.8
+            hue: 0.2
+        p: 0.8
+      
+      # Random gaussian blur
+      - _target_: torchvision.transforms.RandomApply
+        transforms:
+          - _target_: torchvision.transforms.GaussianBlur
+            kernel_size: 23
+        p: 0.5
+
+      # Convert to tensor
+      - _target_: torchvision.transforms.ToTensor
+
+    online:
+
+      - _target_: torchvision.transforms.RandomResizedCrop
+        size: 224
+      
+      # Horizontal flip
+      - _target_: torchvision.transforms.RandomHorizontalFlip
+        p: 0.5
+      
+      # Convert to tensor
+      - _target_: torchvision.transforms.ToTensor

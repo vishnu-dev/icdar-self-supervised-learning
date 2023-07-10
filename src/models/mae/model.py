@@ -36,7 +36,7 @@ class MAE(pl.LightningModule):
         self.pos_embed = nn.Parameter(torch.zeros(1, num_patches + 1, embed_dim), requires_grad=False)  # fixed sin-cos embedding
 
         self.blocks = nn.ModuleList([
-            Block(embed_dim, num_heads, mlp_ratio, qkv_bias=True, norm_layer=norm_layer)
+            Block(embed_dim, num_heads, mlp_ratio, qkv_bias=False, norm_layer=norm_layer)
             for i in range(depth)])
         self.norm = norm_layer(embed_dim)
         # --------------------------------------------------------------------------
@@ -50,7 +50,7 @@ class MAE(pl.LightningModule):
         self.decoder_pos_embed = nn.Parameter(torch.zeros(1, num_patches + 1, decoder_embed_dim), requires_grad=False)  # fixed sin-cos embedding
 
         self.decoder_blocks = nn.ModuleList([
-            Block(decoder_embed_dim, decoder_num_heads, mlp_ratio, qkv_bias=True, norm_layer=norm_layer)
+            Block(decoder_embed_dim, decoder_num_heads, mlp_ratio, qkv_bias=False, norm_layer=norm_layer)
             for i in range(decoder_depth)])
 
         self.decoder_norm = norm_layer(decoder_embed_dim)
@@ -236,8 +236,8 @@ class MAE(pl.LightningModule):
                 grad_norm = torch.norm(parameters.grad)
                 self.logger.experiment.add_scalar('grad_norm', grad_norm, self.global_step)
 
-        self.log('train_loss', loss)
-        self.log('lr', self.trainer.optimizers[0].param_groups[0]['lr'])
+        self.log('train_loss', loss, sync_dist=True)
+        self.log('lr', self.trainer.optimizers[0].param_groups[0]['lr'], sync_dist=True)
 
         return loss
     
@@ -250,7 +250,7 @@ class MAE(pl.LightningModule):
             print("Loss is {}, stopping validation".format(loss_value))
             sys.exit(1)
 
-        self.log('val_loss', loss)
+        self.log('val_loss', loss, sync_dist=True)
         return loss
 
     def configure_optimizers(self) -> Any:
