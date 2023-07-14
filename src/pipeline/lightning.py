@@ -7,7 +7,17 @@ class LightningPipeline:
     def __init__(
         self, root_dir, model_class, mode, data_loader, batch_size, trainer_cfg
     ):
-        # pl.seed_everything(42, workers=True)
+        """Pytorch Lightning pipeline
+
+        Args:
+            root_dir (str): Root directory for model checkpoints
+            model_class (Any): Model class
+            mode (str): Execution mode (train, eval, test)
+            data_loader (Dict): Data loader dictionary
+            batch_size (int): Batch size
+            trainer_cfg (Dict): Dictionary of trainer configuration parameters
+        """
+        pl.seed_everything(42, workers=True)
 
         self.model_class = model_class
         self.mode = mode
@@ -39,6 +49,7 @@ class LightningPipeline:
         )
 
     def run(self):
+        
         model = self.init_model()
         self.init_trainer(model)
 
@@ -46,6 +57,11 @@ class LightningPipeline:
             self.trainer.fit(
                 model, self.data_loader.get("train"), self.data_loader.get("val")
             )
+        elif self.mode == "eval":
+            self.trainer.fit(
+                model, self.data_loader.get("train"), self.data_loader.get("val")
+            )
+            self.trainer.test(model, self.data_loader.get(self.mode))
         elif self.mode == "test":
             self.trainer.test(model, self.data_loader.get(self.mode))
         else:

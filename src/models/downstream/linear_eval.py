@@ -9,18 +9,24 @@ import pytorch_lightning as pl
 class DownstreamClassifier(pl.LightningModule):
     
     def __init__(self, base_model=None, features=2048, num_classes=13, learning_rate=1e-2, batch_size=64, **kwargs):
+        """Linear evaluation model
+
+        Args:
+            base_model (Any, optional): Self-supervised pre-trained model. Defaults to None.
+            features (int, optional): Embedding size from the SSL model. Defaults to 2048.
+            num_classes (int, optional): Number of classes to predict. Defaults to 13.
+            learning_rate (_type_, optional): Learning rate. Defaults to 1e-2.
+            batch_size (int, optional): Batch size. Defaults to 64.
+        """
         super().__init__()
         
         self.save_hyperparameters()
-                
-        self.learning_rate = learning_rate
-        
+
+        self.learning_rate = learning_rate        
         self.num_classes = num_classes
-        
         self.base_model = base_model
 
         self.classifier = Linear(features, num_classes)
-        
         self.criterion = CrossEntropyLoss()
         
     def forward(self, x):

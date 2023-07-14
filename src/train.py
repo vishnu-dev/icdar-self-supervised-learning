@@ -12,6 +12,17 @@ from src.pipeline.lightning import LightningPipeline
 
 @hydra.main(version_base=None, config_path='config', config_name='config')
 def execute(cfg: DictConfig):
+    """
+    Configuration based model training entry point.
+    CLI arguments are passed as configuration overrides.
+    
+    Args:
+        cfg: The configuration object from hydra.
+    
+    Examples:
+        >>> python train.py +experiment=simclr_bolts model.params.batch_size=128
+    
+    """
     
     print(OmegaConf.to_yaml(cfg))
     cfg = hydra.utils.instantiate(cfg)
@@ -36,6 +47,7 @@ def execute(cfg: DictConfig):
         cfg.dataset.num_workers
     )
     
+    # Prints the dataset size for each type of dataloader.
     for name, dataloader in dataloaders.items():
         print(f'{name} dataloader: ', len(dataloader.dataset))
     

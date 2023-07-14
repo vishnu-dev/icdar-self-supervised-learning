@@ -2,7 +2,9 @@ name: byol
 
 learning_rate: 0.2
 
-params: {}
+params:
+  warmup_epochs: 10
+  weight_decay: 1e-6
 
 augmentations:
   train:

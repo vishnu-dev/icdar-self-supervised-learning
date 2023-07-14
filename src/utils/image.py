@@ -3,6 +3,15 @@ import numpy as np
 
 
 def img_is_color(img):
+    """Check if an image is color or grayscale.
+
+    Args:
+        img (PIL.Image): Image to be checked.
+
+    Returns:
+        bool: If True, the image is color. If False, the image is grayscale.
+    """
+    
     if len(img.shape) == 3 and img.shape[0] == 3:
         # Check the color channels to see if they're all the same.
         c1, c2, c3 = img[:, :, 0], img[:, :, 1], img[:, :, 2]
@@ -18,23 +27,15 @@ def show_image_list(list_images, list_titles=None, list_cmaps=None, grid=True, n
     Shows a grid of images, where each image is a Numpy array. The images can be either
     RGB or grayscale.
 
-    Parameters:
-    ----------
-    images: list
-        List of the images to be displayed.
-    list_titles: list or None
-        Optional list of titles to be shown for each image.
-    list_cmaps: list or None
-        Optional list of cmap values for each image. If None, then cmap will be
-        automatically inferred.
-    grid: boolean
-        If True, show a grid over each image
-    num_cols: int
-        Number of columns to show.
-    figsize: tuple of width, height
-        Value to be passed to pyplot.figure()
-    title_fontsize: int
-        Value to be passed to set_title().
+    Args:
+        images (list): List of the images to be displayed.
+        list_titles (list or None): Optional list of titles to be shown for each image.
+        list_cmaps (list or None): Optional list of cmap values for each image. If None, then cmap will be
+            automatically inferred.
+        grid (bool): If True, show a grid over each image.
+        num_cols (int): Number of columns to show.
+        figsize (tuple): Tuple of width and height, value to be passed to pyplot.figure().
+        title_fontsize (int): Value to be passed to set_title().
     """
     
     assert isinstance(list_images, list)

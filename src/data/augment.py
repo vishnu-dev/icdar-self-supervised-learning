@@ -4,7 +4,14 @@ from kornia.morphology import erosion, dilation
 
 
 class GaussianNoise(object):
+    
     def __init__(self, mean=0., std=1.):
+        """Gaussian noise transform.
+
+        Args:
+            mean (float, optional): Mean of the distribution for noise. Defaults to 0.0.
+            std (_type_, optional): Standard deviation of the distribution for noise. Defaults to 1.0.
+        """
         self.std = std
         self.mean = mean
     
@@ -19,6 +26,11 @@ class GaussianNoise(object):
 class Erosion(object):
     
     def __init__(self, kernel_size=3):
+        """Erosion transform.
+        
+        Args:
+            kernel_size (int, optional): Kernel size for erosion. Defaults to 3.
+        """
         self.kernel_size = kernel_size
     
     def __call__(self, tensor):
@@ -31,6 +43,11 @@ class Erosion(object):
 class Dilation(object):
     
     def __init__(self, kernel_size=3):
+        """Dilation transform.
+
+        Args:
+            kernel_size (int, optional): Kernel size for dilation. Defaults to 3.
+        """
         self.kernel_size = kernel_size
     
     def __call__(self, tensor):
@@ -41,9 +58,15 @@ class Dilation(object):
         return batch_tensor[0, :, :, :]
 
 
-class NegativePairTransform:
+class PairTransform:
     
     def __init__(self, transforms=None, online_transforms=None):
+        """Pair transform for contrastive models.
+        
+        Args:
+            transforms (torchvision.transforms, optional): Transforms for the pair. Defaults to None.
+            online_transforms (torchvision.transforms, optional): Transforms for the online image. Defaults to None.
+        """
         self.transforms = transforms
         self.online_transform = online_transforms
     

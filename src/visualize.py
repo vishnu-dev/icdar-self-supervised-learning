@@ -7,6 +7,16 @@ from tqdm import tqdm
 
 
 def plot_features(model, data_loader, num_feats, batch_size, num_samples):
+    """
+     Plot embeddings. This is a wrapper around : func : ` tsne. TSNE ` to make it easier to visualize the model's performance.
+     
+     Args:
+     	 model: The model to be visualized. It must have a ` eval ` method that takes a list of inputs and returns a 2 - tuple ( x1
+     	 data_loader
+     	 num_feats
+     	 batch_size
+     	 num_samples
+    """
     num_samples = len(data_loader) if not num_samples else num_samples
     feats = np.array([]).reshape((0, num_feats))
     labels = np.array([])

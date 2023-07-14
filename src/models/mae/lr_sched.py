@@ -3,7 +3,19 @@ import torch.optim.lr_scheduler as lr_scheduler
 import math
 
 class CustomScheduler(lr_scheduler._LRScheduler):
+    
     def __init__(self, optimizer, warmup_epochs, epochs, min_lr, lr):
+        """
+        Custom learning rate scheduler
+        Half-cycle cosine learning rate scheduler with warmup epochs
+
+        Args:
+            optimizer (torch.optim): Optimizer
+            warmup_epochs (int): Number of warmup epochs
+            epochs (int): Number of epochs
+            min_lr (float): Minimum learning rate
+            lr (float): Base learning rate
+        """
         self.warmup_epochs = warmup_epochs
         self.epochs = epochs
         self.min_lr = min_lr

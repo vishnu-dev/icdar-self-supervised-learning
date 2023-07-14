@@ -1,0 +1,26 @@
+# @package _global_
+defaults:
+  - override /paths: default
+  - override /dataset: icdar
+  - override /model: linear_eval
+  - override /mode: train
+  - override /trainer: default
+
+paths:
+  icdar_root_dir: /home/woody/iwfa/iwfa028h/dev/faps/data/ICDAR2017_CLaMM_Large
+  icdar_label_path: /home/woody/iwfa/iwfa028h/dev/faps/data/ICDAR2017_CLaMM_Large/@ICDAR2017_CLaMM_Large.csv
+
+trainer:
+  max_epochs: 100
+  accelerator: gpu
+  strategy:
+  train_val_test_split: [0.7, 0.1, 0.2]
+
+dataset:
+  batch_size: 64
+
+model:
+  base_model:
+    name: byol
+    classname: BYOL
+    checkpoint: 617149

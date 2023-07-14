@@ -1,11 +1,18 @@
-from pl_bolts.models.self_supervised import SimCLR, BYOL
+from pl_bolts.models.self_supervised import SimCLR
+from src.models.byol.model import BYOL
 from src.models.mae.model import MAE
 from src.models.downstream.linear_eval import DownstreamClassifier
 
-# from models.byol.model import BYOL
-
 
 def model_factory(model_name, **model_kwargs):
+    """Model factory for self-supervised models
+
+    Args:
+        model_name (str): Model name
+
+    Returns:
+        Any: Self-supervised model
+    """
     if model_name.lower() == 'simclr':
         return SimCLR(**model_kwargs)
     elif model_name.lower() == 'mae':

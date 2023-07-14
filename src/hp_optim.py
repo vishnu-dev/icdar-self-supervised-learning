@@ -6,12 +6,12 @@ import numpy as np
 from functools import partial
 from datetime import datetime
 import torchvision.transforms as T
-from data.data_factory import data_factory
-from data.transforms import transform_factory
-from data.collate import collate_factory
-from models.model_factory import model_factory
-from pipeline.lightning import LightningPipeline
-from data.augment import Dilation, GaussianNoise
+from src.data.data_factory import data_factory
+from src.data.transforms import transform_factory
+from src.data.collate import collate_factory
+from src.models.model_factory import model_factory
+from src.pipeline.lightning import LightningPipeline
+from src.data.augment import Dilation, GaussianNoise
 
 # Values are same because we have grayscale images
 icdar_mean = [0.7013, 0.7013, 0.7013]
@@ -26,6 +26,21 @@ icdar_std = [0.2510, 0.2510, 0.2510]
 @click.option('--mode', default='train', help='Execution mode (train, test)')
 @click.option('--num-cpus', default=8, type=int, help='Number of CPUs for data loading')
 def execute(root_dir, label_path, dataset, model_name, mode, num_cpus):
+    """
+    Optuna hyperparameter optimization.
+    
+    Finding the best hyperparameters for a model is a tedious task.
+    Optuna is a hyperparameter optimization framework that automates this task.
+
+    Args:
+        root_dir: Dataset root directory
+        label_path: Label CSV filepath
+        dataset: Dataset name
+        model_name: Model to run
+        mode: Execution mode (train, test)
+        num_cpus: Number of CPUs for data loading
+
+    """
     
     study_file_path = os.path.abspath(os.path.join(
         root_dir, '..', 'trained_models', f'{model_name}_{dataset}_study.pkl'
@@ -37,7 +52,7 @@ def execute(root_dir, label_path, dataset, model_name, mode, num_cpus):
     now = datetime.now()
     study = optuna.create_study(
         direction='minimize',
-        # storage=f'sqlite:///optuna-iwfa028h.db',
+        # storage=f'sqlite:///optuna.db',
         study_name=f'{model_name}_{dataset}_{now.strftime("%Y%m%d%H%M%S")}'
     )
     study.optimize(partial_objective, n_trials=20)
@@ -46,6 +61,7 @@ def execute(root_dir, label_path, dataset, model_name, mode, num_cpus):
 
 
 def objective(root_dir, label_path, dataset, model_name, mode, num_cpus, trial):
+    """Objective function for Optuna."""
     
     learning_rate = trial.suggest_float('learning_rate', 1e-5, 1e-2)
     batch_size = trial.suggest_categorical('batch_size', [64, 128])

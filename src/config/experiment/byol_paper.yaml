@@ -11,31 +11,26 @@ paths:
   icdar_label_path: /home/woody/iwfa/iwfa028h/dev/faps/data/ICDAR2017_CLaMM_Large/@ICDAR2017_CLaMM_Large.csv
 
 trainer:
-  max_epochs: 300
+  max_epochs: 500
   accelerator: gpu
   strategy:
   train_val_test_split: [0.7, 0.1, 0.2]
   accumulate_grad_batches: 1
   
 dataset:
-  batch_size: 64
+  batch_size: 256
 
 model:
-  learning_rate: 1.5e-4
+  learning_rate: 1.5e-3
   augmentations:
     train:
 
       # Random resized crop
       - _target_: torchvision.transforms.RandomResizedCrop
         size: 224
-        scale:
-          - 0.2
-          - 1.0
-        interpolation: 3
       
       # Horizontal flip
       - _target_: torchvision.transforms.RandomHorizontalFlip
-        p: 0.5
       
       # Random Color Jitter
       - _target_: torchvision.transforms.RandomApply
@@ -45,7 +40,7 @@ model:
             contrast: 0.8
             saturation: 0.8
             hue: 0.2
-        p: 0.8
+        p: 0.3
       
       # Random gaussian blur
       - _target_: torchvision.transforms.RandomApply

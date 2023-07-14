@@ -17,6 +17,27 @@ def data_factory(
     num_cpus=None,
     pin_memory=True
 ):
+    """Data loader factory based on dataset name.
+
+    Args:
+        dataset_name (str): Name of the dataset
+        root_dir (str): Dataset root directory
+        label_filepath (str): Label CSV filepath
+        train_val_test_ratio (List[float]): List of ratios for train, val and test
+        transforms (torchvision.transforms.Compose): Transforms to apply to the dataset
+        mode (str): Execution mode (train, test)
+        batch_size (int): Batch size
+        collate_fn (Union[Callable, NoneType], optional): Collate function. Defaults to None.
+        num_cpus (int, optional): Number of CPUs for data loading. Defaults to None.
+        pin_memory (bool, optional): Whether to pin memory. Defaults to True.
+
+    Raises:
+        NotImplementedError: If dataset is not implemented
+        KeyError: If defined mode is not implemented
+
+    Returns:
+        dict[str, torch.utils.data.DataLoader]: Dictionary of data loaders. Train and val for train mode, test for test mode
+    """
     
     print('Batch size: ', batch_size)
 

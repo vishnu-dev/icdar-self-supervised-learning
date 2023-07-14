@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# Simple Contrastive Learning of Visual Representations Model
+#
+# Own implementation of SimCLR
+# 
+# !DEPRECATED! in favor of PyTorch Lightning Bolts implementation
+# -----------------------------------------------------------
+
 import torch
 from torch.nn import functional as F
 import pytorch_lightning as pl
@@ -12,6 +20,7 @@ class SimCLR(pl.LightningModule):
         self.save_hyperparameters()
         self.encoder = ResNet50Encoder()
         self.projection = ProjectionHead(1000)
+        raise DeprecationWarning('This model is deprecated in favor of PyTorch Lightning Bolts implementation')
     
     def forward(self, x):
         embedding = self.encoder(x)

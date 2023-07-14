@@ -9,6 +9,15 @@ import torchvision.transforms as T
 class ICDARDataset(Dataset):
 
     def __init__(self, csv_filepath, root_dir, transforms=None, convert_rgb=True, mask_generator=None):
+        """ICDAR Custom Dataset class
+
+        Args:
+            csv_filepath (str): Label file path
+            root_dir (str): Dataset root directory
+            transforms (torchvision.transforms, optional): Transforms. Defaults to None.
+            convert_rgb (bool, optional): Whether to convert to RGB. Defaults to True.
+            mask_generator (Union[Callable, NoneType], optional): Mask generator. Defaults to None.
+        """
         self.transforms = transforms
         self.convert_rgb = convert_rgb
         self.mask_generator = mask_generator

@@ -1,4 +1,5 @@
 # --------------------------------------------------------
+# MAE model with VisionTransformer backbone ported to Pytorch Lightning
 # References:
 # Masked Autoencoder Pytorch: https://github.com/facebookresearch/mae
 # timm: https://github.com/rwightman/pytorch-image-models/tree/master/timm
