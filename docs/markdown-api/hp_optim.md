@@ -25,8 +25,3 @@ objective(root_dir, label_path, dataset, model_name, mode, num_cpus, trial)
 Objective function for Optuna. 
 
 
-
-
----
-
-_This file was automatically generated via [lazydocs](https://github.com/ml-tooling/lazydocs)._

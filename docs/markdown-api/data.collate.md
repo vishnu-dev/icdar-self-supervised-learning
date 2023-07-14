@@ -33,8 +33,3 @@ Custom collate function for each model.
  - <b>`Union[Callable, None]`</b>:  Collate function for the model. 
 
 
-
-
----
-
-_This file was automatically generated via [lazydocs](https://github.com/ml-tooling/lazydocs)._

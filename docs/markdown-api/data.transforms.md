@@ -41,8 +41,3 @@ Transform factory for self-supervised models
  - <b>`torchvision.transforms.Compose`</b>:  Transforms 
 
 
-
-
----
-
-_This file was automatically generated via [lazydocs](https://github.com/ml-tooling/lazydocs)._

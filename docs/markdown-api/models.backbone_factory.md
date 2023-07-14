@@ -34,8 +34,3 @@ Backbone factory for self-supervised models
  - <b>`Any`</b>:  Backbone model with pre-trained weights 
 
 
-
-
----
-
-_This file was automatically generated via [lazydocs](https://github.com/ml-tooling/lazydocs)._

@@ -320,8 +320,3 @@ validation_step(batch, batch_idx)
 
 
 
-
-
----
-
-_This file was automatically generated via [lazydocs](https://github.com/ml-tooling/lazydocs)._

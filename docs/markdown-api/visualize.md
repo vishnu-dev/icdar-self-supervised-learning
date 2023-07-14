@@ -27,8 +27,3 @@ Plot embeddings. This is a wrapper around : func : ` tsne. TSNE ` to make it eas
  - <b>`model`</b>:  The model to be visualized. It must have a ` eval ` method that takes a list of inputs and returns a 2 - tuple ( x1 data_loader num_feats batch_size num_samples 
 
 
-
-
----
-
-_This file was automatically generated via [lazydocs](https://github.com/ml-tooling/lazydocs)._

@@ -33,8 +33,3 @@ Configuration based model training entry point. CLI arguments are passed as conf
 
 
 
-
-
----
-
-_This file was automatically generated via [lazydocs](https://github.com/ml-tooling/lazydocs)._

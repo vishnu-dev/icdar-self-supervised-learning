@@ -33,8 +33,3 @@ Model callback factory
  - <b>`List[Any]`</b>:  List of callbacks 
 
 
-
-
----
-
-_This file was automatically generated via [lazydocs](https://github.com/ml-tooling/lazydocs)._

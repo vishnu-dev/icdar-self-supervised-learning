@@ -60,8 +60,3 @@ Data loader factory based on dataset name.
  - <b>`dict[str, torch.utils.data.DataLoader]`</b>:  Dictionary of data loaders. Train and val for train mode, test for test mode 
 
 
-
-
----
-
-_This file was automatically generated via [lazydocs](https://github.com/ml-tooling/lazydocs)._

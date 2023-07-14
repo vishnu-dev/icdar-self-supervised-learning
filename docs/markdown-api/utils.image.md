@@ -66,8 +66,3 @@ Shows a grid of images, where each image is a Numpy array. The images can be eit
  - <b>`title_fontsize`</b> (int):  Value to be passed to set_title(). 
 
 
-
-
----
-
-_This file was automatically generated via [lazydocs](https://github.com/ml-tooling/lazydocs)._

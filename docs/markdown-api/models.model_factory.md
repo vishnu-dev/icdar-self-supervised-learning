@@ -33,8 +33,3 @@ Model factory for self-supervised models
  - <b>`Any`</b>:  Self-supervised model 
 
 
-
-
----
-
-_This file was automatically generated via [lazydocs](https://github.com/ml-tooling/lazydocs)._
