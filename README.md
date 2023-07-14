@@ -11,7 +11,7 @@ explored.
 
 Three self-supervised learning methods are compared in this work.
 * [A Simple Framework for Contrastive Learning of Visual Representations](https://arxiv.org/abs/2002.05709), 
-* [Masked Autoencoders Are Scalable Vision Learners](https://arxiv.org/abs/2111.06377) and
+* [Masked Autoencoders Are Scalable Vision Learners](https://arxiv.org/abs/2111.06377)
 * [Bootstrap your own latent: A new approach to self-supervised Learning](https://arxiv.org/abs/2006.07733)
 
 
