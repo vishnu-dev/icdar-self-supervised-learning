@@ -1,5 +1,5 @@
 <!-- markdownlint-disable -->
-# Comparison of Self-Supervised Learning models for ICDAR CLaMM 2017 Challenge
+# Comparison of Self-Supervised Learning models for ICDAR CLaMM Challenge
 
 This project presents a comparison of self-supervised learning methods
 for different downstream tasks in the context of Medieval Handwriting in
