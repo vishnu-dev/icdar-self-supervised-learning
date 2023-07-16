@@ -66,9 +66,50 @@ Check notebook [here](./notebooks/downstream_tasks.ipynb)
 ## Results
 
 
-|  | Pre-training |  | Linear Evaluation |  |
-| :--- | :---: | :---: | :---: | :---: |
-| Model Name | Epochs | Batch size | $\begin{array}{c}\text { Training } \\\text { epochs }\end{array}$ | $\begin{array}{c}\text { Top-1 } \\\text { accuracy }\end{array}$ |
-| SimCLR | 500 | 256 | 100 | $71.8 \%$ |
-| MAE | 500 | 256 | 100 | $36.1 \%$ |
-| BYOL | 500 | 64 | 100 | $45.2 \%$ |
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-c3ow"></th>
+    <th class="tg-c3ow" colspan="2">Pre-training</th>
+    <th class="tg-c3ow" colspan="2">Linear evaluation</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-c3ow">Model Name</td>
+    <td class="tg-c3ow">Epochs</td>
+    <td class="tg-c3ow">Batch size</td>
+    <td class="tg-c3ow">Training epochs</td>
+    <td class="tg-c3ow">Top-1 accuracy</td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">SimCLR</td>
+    <td class="tg-c3ow">500</td>
+    <td class="tg-c3ow">256</td>
+    <td class="tg-c3ow">100</td>
+    <td class="tg-c3ow">71.8 %</td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">MAE</td>
+    <td class="tg-c3ow">500</td>
+    <td class="tg-c3ow">256</td>
+    <td class="tg-c3ow">100</td>
+    <td class="tg-c3ow">36.1 %</td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">BYOL</td>
+    <td class="tg-c3ow">500</td>
+    <td class="tg-c3ow">64</td>
+    <td class="tg-c3ow">100</td>
+    <td class="tg-c3ow">45.2 %</td>
+  </tr>
+</tbody>
+</table>
