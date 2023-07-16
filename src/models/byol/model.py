@@ -213,6 +213,8 @@ class NetWrapper(nn.Module):
 
 
 class BYOL(pl.LightningModule):
+    """Bootstrap your own latent (BYOL) model
+    """
     def __init__(
         self,
         image_size=224,
@@ -226,7 +228,7 @@ class BYOL(pl.LightningModule):
         maxpool1: bool = True,
         **kwargs
     ):
-        """Bootstrap your own latent (BYOL) model
+        """BYOL Initialization
 
         Args:
             image_size (int, optional): Image size. Defaults to 224.

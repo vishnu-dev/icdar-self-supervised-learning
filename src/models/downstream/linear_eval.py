@@ -7,6 +7,8 @@ import pytorch_lightning as pl
 
 
 class DownstreamClassifier(pl.LightningModule):
+    """Linear evaluation model
+    """
     
     def __init__(self, base_model=None, features=2048, num_classes=13, learning_rate=1e-2, batch_size=64, **kwargs):
         """Linear evaluation model

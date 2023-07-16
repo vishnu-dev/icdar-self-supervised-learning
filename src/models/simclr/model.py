@@ -15,6 +15,8 @@ from src.models.simclr.head import ProjectionHead
 
 
 class SimCLR(pl.LightningModule):
+    """Simple Contrastive Learning of Visual Representations Model
+    """
     def __init__(self, batch_size, num_samples, max_epoch):
         super().__init__()
         self.save_hyperparameters()

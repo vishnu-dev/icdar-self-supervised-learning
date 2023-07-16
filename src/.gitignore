@@ -1,5 +1,2 @@
-
 # Ignore dynaconf secret files
 .secrets.*
-
-notebooks/lightning_logs/*

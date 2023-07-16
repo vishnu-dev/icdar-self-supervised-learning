@@ -10,7 +10,7 @@ def execute(cfg: DictConfig):
         cfg (DictConfig): Hydra configuration object.
     
     Examples:
-        >>> python config.py model.name=SimCLR model.params.batch_size=128
+        >>> python config.py model.name=simclr model.params.batch_size=128
         >>> python config.py +experiment=simclr_bolts
     
     """

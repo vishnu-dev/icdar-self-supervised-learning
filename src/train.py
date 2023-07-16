@@ -16,11 +16,14 @@ def execute(cfg: DictConfig):
     Configuration based model training entry point.
     CLI arguments are passed as configuration overrides.
     
+    Configurations are defined in the config directory.
+    
     Args:
         cfg: The configuration object from hydra.
     
     Examples:
         >>> python train.py +experiment=simclr_bolts model.params.batch_size=128
+        >>> python train.py +experiment=byol_paper
     
     """
     
