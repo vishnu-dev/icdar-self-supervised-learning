@@ -26,3 +26,49 @@ pre-training dataset. In conclusion, this study showcases the potential
 of self-supervised learning for historical handwritten document
 classification tasks and emphasizes the significance of selecting
 suitable methods for specific downstream tasks.
+
+## Dataset
+
+ICDAR CLaMM Challenge dataset is used for this project. The dataset can be found [here](https://clamm.irht.cnrs.fr/icdar-2017/download/)
+
+## Documentation
+
+API Documentation is available at [DOCUMENTATION.md](./DOCUMENTATION.md)
+
+## Running the code
+
+### Prerequisites
+
+`pip install -r requirements.txt`
+
+### Training
+
+#### SSL Model Training
+
+```bash
+cd src/
+python train.py +experiment=simclr_bolts
+```
+
+#### Linear Classifier Training
+
+```bash
+cd src/
+python evaluate.py +experiment=simclr_eval
+```
+
+### Evaluation
+
+#### Linear Classifier Testing
+
+Check notebook [here](./notebooks/downstream_tasks.ipynb)
+
+## Results
+
+
+|  | Pre-training |  | Linear Evaluation |  |
+| :--- | :---: | :---: | :---: | :---: |
+| Model Name | Epochs | Batch size | $\begin{array}{c}\text { Training } \\\text { epochs }\end{array}$ | $\begin{array}{c}\text { Top-1 } \\\text { accuracy }\end{array}$ |
+| SimCLR | 500 | 256 | 100 | $71.8 \%$ |
+| MAE | 500 | 256 | 100 | $36.1 \%$ |
+| BYOL | 500 | 64 | 100 | $45.2 \%$ |
