@@ -13,15 +13,15 @@ explored.
 Three self-supervised learning methods are compared in this work.
 * [A Simple Framework for Contrastive Learning of Visual Representations](https://arxiv.org/abs/2002.05709) (SimCLR)
 
-  <img src="docs/report/latex_source/images/simclr_arch.jpg" width=700/>
+  <img src="docs/report/latex_source/images/simclr_arch.jpg"/>
   
 * [Masked Autoencoders Are Scalable Vision Learners](https://arxiv.org/abs/2111.06377) (MAE)
 
-  <img src="docs/report/latex_source/images/mae_arch.jpg" width=700/>
+  <img src="docs/report/latex_source/images/mae_arch.jpg"/>
   
 * [Bootstrap your own latent: A new approach to self-supervised Learning](https://arxiv.org/abs/2006.07733) (BYOL)
 
-  <img src="docs/report/latex_source/images/byol_arch.jpg" width=700/>
+  <img src="docs/report/latex_source/images/byol_arch.jpg"/>
 
 
 The performance evaluation was
