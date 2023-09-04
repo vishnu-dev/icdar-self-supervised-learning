@@ -177,3 +177,5 @@ notebooks/lightning_logs/
 checkpoints/
 
 iframe_figures/
+
+.DS_Store
