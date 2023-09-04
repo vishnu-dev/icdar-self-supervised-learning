@@ -8,6 +8,7 @@ various computer vision and natural language processing applications,
 but its effectiveness on historical scripts has not been extensively
 explored. 
 
+<img src="docs/Samples of CLaMM Dataset.jpg"/>
 
 Three self-supervised learning methods are compared in this work.
 * [A Simple Framework for Contrastive Learning of Visual Representations](https://arxiv.org/abs/2002.05709), 
@@ -104,3 +105,5 @@ Check notebook [here](./notebooks/downstream_tasks.ipynb)
   </tr>
 </tbody>
 </table>
+
+Image sources: [ICDAR CLaMM](https://clamm.irht.cnrs.fr/script-classes/)
